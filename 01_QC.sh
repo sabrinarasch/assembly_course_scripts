@@ -39,7 +39,7 @@
         reads_dir=${raw_data_dir}/${data_type}
         fastqc -t 2 -o ${QC_dir}/${data_type} ${reads_dir}/*.fastq.gz
         #Options entered here are:
-            #"-t 2": Specifies the number of files which can be processed simultaneously.
-            #"-o ...": Create all output files in the specified output directory.
-            #"*fastq.gz": Input fastq files.
+            #"-t": number of used threads
+            #"-o": output directory
+            #"*.fastq.gz": input fastq files
     done

@@ -15,7 +15,7 @@
 
 #Create directories and variables
     course_dir=/data/users/srasch/assembly_course
-    data_types=("Illumina" "pacbio" "RNAseq")    
+    data_types=("Illumina" "pacbio" "RNAseq")
     raw_data_dir=${course_dir}/RawData
 
     kmer_dir=${course_dir}/02_kmer
@@ -33,17 +33,17 @@
     do
         jellyfish count -C -m 19 -s 5G -t 4 -o ${kmer_dir}/${data_type}/${data_type}.jf <(zcat ${raw_data_dir}/${data_type}/*.fastq.gz)
         #Options entered here are:
-            #"count": 
-            #"-C":
-            #"-m 19":
-            #"-s 5G":
-            #"-t 4":
-            #"-o .../*.jf":
-            #"<(zcat .../*fastq.gz)":
+            #"count": count kmers
+            #"-C": canonical kmers
+            #"-m": kmer lenght
+            #"-s": memory usage
+            #"-t": number of used threads
+            #"-o": ouput file
+            #"<(zcat .../*.fastq.gz)": unziped input file
         jellyfish histo -t 4 ${kmer_dir}/${data_type}/${data_type}.jf > ${kmer_dir}/${data_type}/${data_type}.histo
-        #Options entered here are: !!!!!Adapt this!!!!
-            #"histo":
-            #"-t 4":
-            #".../*.jf":
-            #"> .../*.histo":
+        #Options entered here are:
+            #"histo": create kmer count histogram
+            #"-t": number of used threads
+            #".../*.jf": input kmer count file
+            #"> .../*.histo": output histogram file
     done
