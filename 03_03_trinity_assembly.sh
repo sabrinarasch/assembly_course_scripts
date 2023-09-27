@@ -8,24 +8,19 @@
 #SBATCH --mail-type=begin,end,fail
 #SBATCH --output=/data/users/srasch/assembly_course/Output/output_trinity_assembly_%j.o
 #SBATCH --error=/data/users/srasch/assembly_course/Error/error_trinity_assembly_%j.e
-#SBATCH --partition=pcourseassembly
+#SBATCH --partition=pall
 
 #Add the modules
     module add UHTS/Assembler/trinityrnaseq/2.5.1
 
 #Create directories and variables
     course_dir=/data/users/srasch/assembly_course
-    data_types=("Illumina" "pacbio" "RNAseq")    
     raw_data_dir=${course_dir}/RawData
 
     assembly_dir=${course_dir}/03_assembly
         mkdir ${assembly_dir}
-
-#Create the output directories
-    # for data_type in "${data_types[@]}"
-    # do
-    #     assembly_data_dir=${assembly_dir}/${data_type}
-    #         mkdir ${assembly_data_dir}
-    # done
+    trinity_dir=${assembly_dir}/trinity
+        mkdir ${trinity_dir}
 
 #Do the asembly
+    Trinity --seqType fq --left ${raw_data_dir}/RNAseq/*_1.fastq.gz --right ${raw_data_dir}/RNAseq/*_2.fastq.gz --SS_lib_type RF --CPU 6 --max_memory 20G --output ${trinity_dir}
