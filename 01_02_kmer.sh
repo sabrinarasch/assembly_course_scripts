@@ -18,7 +18,8 @@
     data_types=("Illumina" "pacbio" "RNAseq")
     raw_data_dir=${course_dir}/RawData
 
-    kmer_dir=${course_dir}/02_kmer
+    QC_dir=${course_dir}/01_read_QC
+    kmer_dir=${QC_dir}/kmer
         mkdir ${kmer_dir}
 
 #Create the output directories

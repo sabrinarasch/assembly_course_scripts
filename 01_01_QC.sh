@@ -19,14 +19,15 @@
     
     raw_data_dir=${course_dir}/RawData
         mkdir ${raw_data_dir}
-    QC_dir=${course_dir}/01_QC
+    QC_dir=${course_dir}/01_read_QC
         mkdir ${QC_dir}
+    fastqc_dir=${QC_dir}/fastqc
 
 #Create the output and raw data directories and make a symbolic link to the data
     for data_type in "${data_types[@]}"
     do
-        QC_data_dir=${QC_dir}/${data_type}
-            mkdir ${QC_data_dir}
+        fastqc_data_dir=${fastqc_dir}/${data_type}
+            mkdir ${fastqc_data_dir}
 
         data_dir=${raw_data_dir}/${data_type}
             mkdir ${data_dir}
@@ -37,7 +38,7 @@
     for data_type in "${data_types[@]}"
     do
         reads_dir=${raw_data_dir}/${data_type}
-        fastqc -t 2 -o ${QC_dir}/${data_type} ${reads_dir}/*.fastq.gz
+        fastqc -t 2 -o ${fastqc_dir}/${data_type} ${reads_dir}/*.fastq.gz
         #Options entered here are:
             #"-t": number of used threads
             #"-o": output directory

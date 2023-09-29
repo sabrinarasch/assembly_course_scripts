@@ -17,10 +17,15 @@
     course_dir=/data/users/srasch/assembly_course
     raw_data_dir=${course_dir}/RawData
 
-    assembly_dir=${course_dir}/03_assembly
+    assembly_dir=${course_dir}/02_assembly
         mkdir ${assembly_dir}
     flye_dir=${assembly_dir}/flye
         mkdir ${flye_dir}
 
 #Do the asembly
     flye --pacbio-raw ${raw_data_dir}/pacbio/*.fastq.gz -o ${flye_dir} -g 125m -t 8
+    #Options entered here are:
+            #"--pacbio-raw": 
+            #"-o": 
+            #"-g": 
+            #"-t": number of used threads

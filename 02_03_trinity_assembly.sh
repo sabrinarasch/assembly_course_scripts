@@ -17,10 +17,16 @@
     course_dir=/data/users/srasch/assembly_course
     raw_data_dir=${course_dir}/RawData
 
-    assembly_dir=${course_dir}/03_assembly
-        mkdir ${assembly_dir}
+    assembly_dir=${course_dir}/02_assembly
     trinity_dir=${assembly_dir}/trinity
         mkdir ${trinity_dir}
 
 #Do the asembly
-    Trinity --seqType fq --left ${raw_data_dir}/RNAseq/*_1.fastq.gz --right ${raw_data_dir}/RNAseq/*_2.fastq.gz --SS_lib_type RF --CPU 6 --max_memory 20G --output ${trinity_dir}
+    Trinity --seqType fq --left ${raw_data_dir}/RNAseq/*_1.fastq.gz --right ${raw_data_dir}/RNAseq/*_2.fastq.gz --SS_lib_type FR --CPU 6 --max_memory 20G --output ${trinity_dir}
+    #Options entered here are:
+        #"--seqType fq": 
+        #"--left/--right": 
+        #"--SS_lib_type FR": 
+        #"--CPU": 
+        #"--max_memory":
+        #"--output":

@@ -17,8 +17,7 @@
     course_dir=/data/users/srasch/assembly_course
     raw_data_dir=${course_dir}/RawData
 
-    assembly_dir=${course_dir}/03_assembly
-        mkdir ${assembly_dir}
+    assembly_dir=${course_dir}/02_assembly
     canu_dir=${assembly_dir}/canu
         mkdir ${canu_dir}
 
@@ -28,3 +27,11 @@
     gridEngineResourceOption="--cpus-per-task=THREADS --mem-per-cpu=MEMORY" \
     gridOptions="--partition=pall --mail-user=sabrina.rasch@students.unibe.ch" \
     -pacbio ${raw_data_dir}/pacbio/*.fastq.gz
+    #Options entered here are:
+        #"-p canu": 
+        #"-d": 
+        #"-genomeSize": 
+        #"maxThreads":
+        #"gridEngineResourceOption":
+        #"gridOptions":
+        #"-pacbio":
