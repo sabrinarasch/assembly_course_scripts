@@ -28,10 +28,7 @@
     gridOptions="--partition=pall --mail-user=sabrina.rasch@students.unibe.ch" \
     -pacbio ${raw_data_dir}/pacbio/*.fastq.gz
     #Options entered here are:
-        #"-p canu": 
-        #"-d": 
-        #"-genomeSize": 
-        #"maxThreads":
-        #"gridEngineResourceOption":
-        #"gridOptions":
-        #"-pacbio":
+        #"-p canu": assembly-prefix
+        #"-d": assembly-directory
+        #"-genomeSize": estimated genome size
+        #"-pacbio": input PacBio reads

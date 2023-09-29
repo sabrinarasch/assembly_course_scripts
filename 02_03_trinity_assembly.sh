@@ -24,9 +24,9 @@
 #Do the asembly
     Trinity --seqType fq --left ${raw_data_dir}/RNAseq/*_1.fastq.gz --right ${raw_data_dir}/RNAseq/*_2.fastq.gz --SS_lib_type FR --CPU 6 --max_memory 20G --output ${trinity_dir}
     #Options entered here are:
-        #"--seqType fq": 
-        #"--left/--right": 
-        #"--SS_lib_type FR": 
-        #"--CPU": 
-        #"--max_memory":
-        #"--output":
+        #"--seqType fq": type of reads
+        #"--left/--right": left reads/right reads
+        #"--SS_lib_type FR": Strand-specific RNA-Seq read orientation
+        #"--CPU": number of CPUs to use
+        #"--max_memory": suggested max memory to use
+        #"--output": name of directory for output

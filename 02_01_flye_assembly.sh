@@ -25,7 +25,7 @@
 #Do the asembly
     flye --pacbio-raw ${raw_data_dir}/pacbio/*.fastq.gz -o ${flye_dir} -g 125m -t 8
     #Options entered here are:
-            #"--pacbio-raw": 
-            #"-o": 
-            #"-g": 
-            #"-t": number of used threads
+            #"--pacbio-raw": PacBio regular CLR reads (<20% error)
+            #"-o": Output directory
+            #"-g": estimated genome size
+            #"-t": number of parallel threads
