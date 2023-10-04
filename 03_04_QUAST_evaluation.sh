@@ -16,7 +16,6 @@
 #Specify name of assembly (!!!COMMENT OUT THE ONE YOU ARE NOT USING!!!)
     assembly_name=canu
     # assembly_name=flye
-    # assembly_name=trinity
 
 #Specify directory structure and create them
     course_dir=/data/users/srasch/assembly_course
@@ -32,24 +31,9 @@
 #Specify the assembly to use (!!!COMMENT OUT THE ONE YOU ARE NOT USING!!!)
     assembly=${polish_evaluation_dir}/polish/pilon/canu/***
     # assembly=${polish_evaluation_dir}/polish/pilon/flye/***
-    # assembly=${course_dir}/02_assembly/trinity/Trinity.fasta
 
 #Copy reference to Raw Data
     ln -s /data/courses/assembly-annotation-course/references ${raw_data_dir}
-
-#Run QUAST to ...
-    python /software/UHTS/Quality_control/quast/4.6.0/bin/quast.py --eukaryote --large --est-ref-size 125m --threads 8 --labels ${assembly_name} 
-    ${assembly}
-        #Options entered here are:
-            #"--eukaryote": 
-            #"--large": 
-            #"--est-ref-size": 
-            #"--threads": 
-            #"--labels":
-            #"-R (-r)":
-            #"--features":
-            #"(--pacbio)":
-            #"(--no-sv)":
 
 #Run QUAST to ...
     python /software/UHTS/Quality_control/quast/4.6.0/bin/quast.py --eukaryote --large --est-ref-size 125m --threads 8 --labels ${assembly_name} ${assembly}
@@ -60,8 +44,7 @@
             #"--threads": 
             #"--labels":
     
-    python /software/UHTS/Quality_control/quast/4.6.0/bin/quast.py --eukaryote --large --est-ref-size 125m --threads 8 --labels ${assembly_name} -R ${raw_data_dir} --features ${raw_data_dir}
-    ${assembly}
+    python /software/UHTS/Quality_control/quast/4.6.0/bin/quast.py --eukaryote --large --est-ref-size 125m --threads 8 --labels ${assembly_name} -R ${raw_data_dir} --features ${raw_data_dir} ${assembly}
         #Options entered here are:
             #"--eukaryote": 
             #"--large": 

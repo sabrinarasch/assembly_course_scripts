@@ -35,10 +35,12 @@
     # assembly=${course_dir}/02_assembly/trinity/Trinity.fasta
 
 #Run busco to ...
-    busco -i ${assembly} -l brassicales_odb10 -o ${assembly_BUSCO_dir} -m genome --cpu 8
+    busco -i ${assembly} -l brassicales_odb10 -o ${assembly_name} -m genome --cpu 8
         #Options entered here are:
             #"-i": Input sequence file in FASTA format. Can be an assembled genome or transcriptome (DNA), or protein sequences from an annotated gene set.
             #"-l": Specify the name of the BUSCO lineage to be used.
             #"-o": OUTPUT
             #"-m": Specify which BUSCO analysis mode to run, genome, proteins, transcriptome (!!!FOR THE CANU AND FLYE ASSEMBLY I USE GENOME AND FOR THE TRINITRY ASSEMBLY I USE TRANSCRIPTOME!!!)
-            #"---cpu": Specify the number (N=integer) of threads/cores to use.
+            #"--cpu": Specify the number (N=integer) of threads/cores to use.
+
+    mv ${course_dir}/scripts/${assembly_name} ${assembly_BUSCO_dir}
