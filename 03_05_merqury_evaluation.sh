@@ -33,3 +33,37 @@
     # assembly=${polish_evaluation_dir}/polish/pilon/flye/***
 
 
+
+#meryl mit raw ilumina reads db vorbereiten
+#meryl in ?canu/2.1.1/bin/meryl?
+#In container bind also ordner of raw data (soft link)
+
+
+
+
+
+
+
+WORKDIR=/path/to/work/directory
+
+apptainer exec \
+--bind $WORKDIR,$RAWDATADIR \
+/software/singularity/containers/Merqury-1.3-1.ubuntu20.sif \
+meryl k=19 count output read_1.meryl read_1.fastq.gz; \
+meryl k=19 count output read_2.meryl read_2.fastq.gz; \
+meryl union-sum output genome.meryl read*.meryl
+
+#read_1.meryl in $SCRATCH
+#read_1.fast.gz -> raw ilumina read
+#genome.meryl in folder -> full path
+
+
+apptainer exec \
+--bind $WORKDIR \
+/software/singularity/containers/Merqury-1.3-1.ubuntu20.sif \
+merqury.sh \
+genome.meryl \ #FULLPATH TO MERYL CREATED ABOVE
+assemblies.fasta \ #FULLPATH TO ASSEMBLY THAT SHOULD BE EVALUATED
+flye_test #FULLPATH TO OUTPUT PREFIX
+
+#MAKE TWO SCRIPTS ONE WITH MERYL AND ONE WITH MERCURY
