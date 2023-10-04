@@ -3,11 +3,11 @@
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=40G
 #SBATCH --time=02:00:00
-#SBATCH --job-name=kmer
+#SBATCH --job-name=jellyfish_kmer
 #SBATCH --mail-user=sabrina.rasch@students.unibe.ch
 #SBATCH --mail-type=begin,end,fail
-#SBATCH --output=/data/users/srasch/assembly_course/Output/output_kmer_%j.o
-#SBATCH --error=/data/users/srasch/assembly_course/Error/error_kmer_%j.e
+#SBATCH --output=/data/users/srasch/assembly_course/Output/output_jellyfish_kmer_%j.o
+#SBATCH --error=/data/users/srasch/assembly_course/Error/error_jellyfish_kmer_%j.e
 #SBATCH --partition=pall
 
 #Add the modules
