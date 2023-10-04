@@ -13,22 +13,22 @@
 #Add the modules
     module add UHTS/Assembler/canu/2.1.1
 
-#Create directories and variables
+#Specify directory structure and create them
     course_dir=/data/users/srasch/assembly_course
-    raw_data_dir=${course_dir}/RawData
+        raw_data_dir=${course_dir}/RawData
+        assembly_dir=${course_dir}/02_assembly
+            canu_dir=${assembly_dir}/canu
+    
+    mkdir ${canu_dir}
 
-    assembly_dir=${course_dir}/02_assembly
-    canu_dir=${assembly_dir}/canu
-        mkdir ${canu_dir}
-
-#Do the asembly
+#Run canu to do the assembly
     canu -p canu -d ${canu_dir} genomeSize=125m \
     maxThreads=16 maxMemory=64 \
     gridEngineResourceOption="--cpus-per-task=THREADS --mem-per-cpu=MEMORY" \
     gridOptions="--partition=pall --mail-user=sabrina.rasch@students.unibe.ch" \
     -pacbio ${raw_data_dir}/pacbio/*.fastq.gz
-    #Options entered here are:
-        #"-p canu": assembly-prefix
-        #"-d": assembly-directory
-        #"-genomeSize": estimated genome size
-        #"-pacbio": input PacBio reads
+        #Options entered here are:
+            #"-p canu": assembly-prefix
+            #"-d": assembly-directory
+            #"-genomeSize": estimated genome size
+            #"-pacbio": input PacBio reads

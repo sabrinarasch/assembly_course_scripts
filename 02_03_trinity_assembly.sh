@@ -13,20 +13,20 @@
 #Add the modules
     module add UHTS/Assembler/trinityrnaseq/2.5.1
 
-#Create directories and variables
+#Specify directory structure and create them
     course_dir=/data/users/srasch/assembly_course
-    raw_data_dir=${course_dir}/RawData
+        raw_data_dir=${course_dir}/RawData
+        assembly_dir=${course_dir}/02_assembly
+            trinity_dir=${assembly_dir}/trinity
+    
+    mkdir ${trinity_dir}
 
-    assembly_dir=${course_dir}/02_assembly
-    trinity_dir=${assembly_dir}/trinity
-        mkdir ${trinity_dir}
-
-#Do the asembly
+#Run Trinity to do the assembly
     Trinity --seqType fq --left ${raw_data_dir}/RNAseq/*_1.fastq.gz --right ${raw_data_dir}/RNAseq/*_2.fastq.gz --SS_lib_type FR --CPU 6 --max_memory 20G --output ${trinity_dir}
-    #Options entered here are:
-        #"--seqType fq": type of reads
-        #"--left/--right": left reads/right reads
-        #"--SS_lib_type FR": Strand-specific RNA-Seq read orientation
-        #"--CPU": number of CPUs to use
-        #"--max_memory": suggested max memory to use
-        #"--output": name of directory for output
+        #Options entered here are:
+            #"--seqType": type of reads
+            #"--left/--right": left reads/right reads
+            #"--SS_lib_type FR": Strand-specific RNA-Seq read orientation
+            #"--CPU": number of CPUs to use
+            #"--max_memory": suggested max memory to use
+            #"--output": name of directory for output
