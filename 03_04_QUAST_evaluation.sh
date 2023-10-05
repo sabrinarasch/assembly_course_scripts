@@ -29,27 +29,34 @@
     mkdir ${assembly_QUAST_dir}
 
 #Specify the assembly to use (!!!COMMENT OUT THE ONE YOU ARE NOT USING!!!)
-    assembly=${polish_evaluation_dir}/polish/pilon/canu/***
-    # assembly=${polish_evaluation_dir}/polish/pilon/flye/***
+    assembly=${polish_evaluation_dir}/polish/pilon/canu/canu.fasta
+    # assembly=${polish_evaluation_dir}/polish/pilon/flye/flye.fasta
 
 #Copy reference to Raw Data
     ln -s /data/courses/assembly-annotation-course/references ${raw_data_dir}
 
-#Run QUAST to ...
-    python /software/UHTS/Quality_control/quast/4.6.0/bin/quast.py --eukaryote --large --est-ref-size 125m --threads 8 --labels ${assembly_name} ${assembly}
-        #Options entered here are:
-            #"--eukaryote": 
-            #"--large": 
-            #"--est-ref-size": 
-            #"--threads": 
-            #"--labels":
+#Run QUAST to assess quality of the assemblies
+    #Without reference
+        python /software/UHTS/Quality_control/quast/4.6.0/bin/quast.py -o ${assembly_QUAST_dir} -m 3000 -t 8 -l ${assembly_name} -e --est-ref-size 125m -i 500 -x ${assembly}
+            #Options entered here are:
+                #"-o": Directory to store all result files
+                #"-m": Lower threshold for contig length.
+                #"-t": Maximum number of threads
+                #"-l": Human-readable assembly names. Those names will be used in reports, plots and logs.
+                #"-e": Genome is eukaryotic. Affects gene finding, conserved orthologs finding and contig alignment.
+                #"--est-ref-size": Estimated reference size
+                #"-i": the minimum alignment length
+                #"-x": Lower threshold for extensive misassembly size. All relocations with inconsistency less than extensive-mis-size are counted as local misassemblies
     
-    python /software/UHTS/Quality_control/quast/4.6.0/bin/quast.py --eukaryote --large --est-ref-size 125m --threads 8 --labels ${assembly_name} -R ${raw_data_dir} --features ${raw_data_dir} ${assembly}
-        #Options entered here are:
-            #"--eukaryote": 
-            #"--large": 
-            #"--est-ref-size": 
-            #"--threads": 
-            #"--labels":
-            #"-R (-r)":
-            #"--features":
+    #With reference
+        python /software/UHTS/Quality_control/quast/4.6.0/bin/quast.py -o ${assembly_QUAST_dir} -R ${raw_data_dir}/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa -m 3000 -t 8 -l ${assembly_name} -e --est-ref-size 125m -i 500 -x ${assembly}
+            #Options entered here are:
+                #"-o": Directory to store all result files
+                #"-R": Reference genome file
+                #"-m": Lower threshold for contig length.
+                #"-t": Maximum number of threads
+                #"-l": Human-readable assembly names. Those names will be used in reports, plots and logs.
+                #"-e": Genome is eukaryotic. Affects gene finding, conserved orthologs finding and contig alignment.
+                #"--est-ref-size": Estimated reference size
+                #"-i": the minimum alignment length
+                #"-x": Lower threshold for extensive misassembly size. All relocations with inconsistency less than extensive-mis-size are counted as local misassemblies
