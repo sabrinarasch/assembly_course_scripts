@@ -10,9 +10,6 @@
 #SBATCH --error=/data/users/srasch/assembly_course/Error/error_pilon_polishing_%j.e
 #SBATCH --partition=pall
 
-#Add the modules
-    java -Xmx45g -jar /mnt/software/UHTS/Analysis/pilon/1.22/bin/pilon-1.22.jar
-
 #Specify name of assembly (!!!COMMENT OUT THE ONE YOU ARE NOT USING!!!)
     assembly_name=canu
     # assembly_name=flye
@@ -32,7 +29,8 @@
     # assembly=${course_dir}/02_assembly/flye/assembly.fasta
 
 #Run pilon to polish the assemblies
-    pilon --genome ${assembly} --frags ${polish_dir}/align/${assembly_name}/${assembly_name}.bam --output ${assembly_name} --outdir ${assembly_pilon_dir}
+    java -Xmx45g -jar /mnt/software/UHTS/Analysis/pilon/1.22/bin/pilon-1.22.jar \
+    --genome ${assembly} --frags ${polish_dir}/align/${assembly_name}/${assembly_name}.bam --output ${assembly_name} --outdir ${assembly_pilon_dir}
         #Options entered here are:
             #"--gemone":
             #"--frags":

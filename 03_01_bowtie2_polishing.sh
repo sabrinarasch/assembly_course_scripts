@@ -15,8 +15,8 @@
     module add UHTS/Analysis/samtools/1.10
 
 #Specify name of assembly (!!!COMMENT OUT THE ONE YOU ARE NOT USING!!!)
-    assembly_name=canu
-    # assembly_name=flye
+    # assembly_name=canu
+    assembly_name=flye
 
 #Specify directory structure and create them (!!!COMMENT OUT THE ONEs ALREADY CREATED IN OTHER RUNS!!!)
     course_dir=/data/users/srasch/assembly_course
@@ -28,16 +28,16 @@
                 align_dir=${polish_dir}/align
                     assembly_align_dir=${align_dir}/${assembly_name}
 
-    # mkdir ${polish_evaluation_dir}
-    # mkdir ${polish_dir}
-    # mkdir ${index_dir}
+    mkdir ${polish_evaluation_dir}
+    mkdir ${polish_dir}
+    mkdir ${index_dir}
     mkdir ${assembly_index_dir}
-    # mkdir ${align_dir}
+    mkdir ${align_dir}
     mkdir ${assembly_align_dir}
 
 #Specify the assembly to use (!!!COMMENT OUT THE ONE YOU ARE NOT USING!!!)
-    assembly=${course_dir}/02_assembly/canu/canu.contigs.fasta
-    # assembly=${course_dir}/02_assembly/flye/assembly.fasta
+    # assembly=${course_dir}/02_assembly/canu/canu.contigs.fasta
+    assembly=${course_dir}/02_assembly/flye/assembly.fasta
 
 #Run bowtie2 to align the reads to the assembly
     #Create index
@@ -50,7 +50,7 @@
             mv ${course_dir}/scripts/*.bt2 ${assembly_index_dir}
 
     #Execute bowtie2
-        bowtie2 --sensitive-local -x ${assembly_index_dir}/index_bowtie2 -1 ${raw_data_dir}/Illumina/*_1.fastq.gz -2 ${raw_data_dir}/Illumina/*_2.fastq.gz -S $SCRATCH/${assembly_name}.sam
+        bowtie2 -p 8 --sensitive-local -x ${assembly_index_dir}/index_bowtie2 -1 ${raw_data_dir}/Illumina/*_1.fastq.gz -2 ${raw_data_dir}/Illumina/*_2.fastq.gz -S $SCRATCH/${assembly_name}.sam
             #Options entered here are:
                 #"--sensitive-local":
                 #"-x":
