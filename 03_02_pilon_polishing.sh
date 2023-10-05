@@ -32,7 +32,7 @@
     java -Xmx45g -jar /mnt/software/UHTS/Analysis/pilon/1.22/bin/pilon-1.22.jar \
     --genome ${assembly} --frags ${polish_dir}/align/${assembly_name}/${assembly_name}.bam --output ${assembly_name} --outdir ${assembly_pilon_dir}
         #Options entered here are:
-            #"--gemone":
-            #"--frags":
-            #"--output":
-            #"--outdir":
+            #"--gemone": The input genome we are trying to improve, which must be the reference used for the bam alignments.
+            #"--frags": A bam file consisting of fragment paired-end alignments, aligned to the --genome argument using bwa or bowtie2.
+            #"--output": Prefix for output files
+            #"--outdir": Use this directory for all output files.

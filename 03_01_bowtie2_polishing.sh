@@ -15,8 +15,8 @@
     module add UHTS/Analysis/samtools/1.10
 
 #Specify name of assembly (!!!COMMENT OUT THE ONE YOU ARE NOT USING!!!)
-    # assembly_name=canu
-    assembly_name=flye
+    assembly_name=canu
+    # assembly_name=flye
 
 #Specify directory structure and create them (!!!COMMENT OUT THE ONEs ALREADY CREATED IN OTHER RUNS!!!)
     course_dir=/data/users/srasch/assembly_course
@@ -36,33 +36,34 @@
     mkdir ${assembly_align_dir}
 
 #Specify the assembly to use (!!!COMMENT OUT THE ONE YOU ARE NOT USING!!!)
-    # assembly=${course_dir}/02_assembly/canu/canu.contigs.fasta
-    assembly=${course_dir}/02_assembly/flye/assembly.fasta
+    assembly=${course_dir}/02_assembly/canu/canu.contigs.fasta
+    # assembly=${course_dir}/02_assembly/flye/assembly.fasta
+
+#Go to folder where the index should be build
+    cd ${assembly_index_dir}
 
 #Run bowtie2 to align the reads to the assembly
     #Create index
         bowtie2-build ${assembly} index_bowtie2
             #Options entered here are:
-                #"${assembly}":
-                #"-index_bowtie2":
-        
-        #Index is build in folder where the script is run, move the files to the desired output folder
-            mv ${course_dir}/scripts/*.bt2 ${assembly_index_dir}
+                #"build": builds a Bowtie index from a set of DNA sequences. 
+                #"${assembly}": A comma-separated list of FASTA files containing the reference sequences to be aligned to.
+                #"index_bowtie2": The basename of the index files to write.
 
     #Execute bowtie2
         bowtie2 -p 8 --sensitive-local -x ${assembly_index_dir}/index_bowtie2 -1 ${raw_data_dir}/Illumina/*_1.fastq.gz -2 ${raw_data_dir}/Illumina/*_2.fastq.gz -S $SCRATCH/${assembly_name}.sam
             #Options entered here are:
-                #"--sensitive-local":
-                #"-x":
-                #"-1/-2":
-                #"-S":
+                #"-p": Launch NTHREADS parallel search threads.
+                #"--sensitive-local": gives specific options, so you don't have to enter them all
+                #"-x": The basename of the index for the reference genome.
+                #"-1/-2": Comma-separated list of files containing mate 1s/2s.
+                #"-S": File to write SAM alignments to.
 
 #Convert SAM to BAM
     samtools view -b $SCRATCH/${assembly_name}.sam > $SCRATCH/${assembly_name}_unsorted.bam
         #Options entered here are:
             #"view": Views and converts SAM/BAM/CRAM files.
             #"-b": Output in the BAM format.
-            #"-t: A tab-delimited file. Each line must contain the reference name in the first column and the length of the reference in the second column, with one line for each distinct reference.
             #"*.sam": Input file.
             #"*_unsorted.bam": Output file.
 
@@ -71,7 +72,6 @@
             #Options entered here are:
                 #"sort": Sort alignments by leftmost coordinates, or by read name when -n is used. 
                 #"-o": Write the final sorted output to file, rather than to standard output.
-                #"*_unsorted.bam": Input file
 
     #Index BAM
         samtools index $SCRATCH/${assembly_name}.bam
