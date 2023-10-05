@@ -37,7 +37,7 @@
 
 #Run QUAST to assess quality of the assemblies
     #Without reference
-        python /software/UHTS/Quality_control/quast/4.6.0/bin/quast.py -o ${assembly_QUAST_dir} -m 3000 -t 8 -l ${assembly_name} -e --est-ref-size 125m -i 500 -x ${assembly}
+        python /software/UHTS/Quality_control/quast/4.6.0/bin/quast.py -o ${assembly_QUAST_dir} -m 3000 -t 8 -l ${assembly_name} -e --est-ref-size 125000000 -i 500 -x 7000 ${assembly}
             #Options entered here are:
                 #"-o": Directory to store all result files
                 #"-m": Lower threshold for contig length.
@@ -49,7 +49,7 @@
                 #"-x": Lower threshold for extensive misassembly size. All relocations with inconsistency less than extensive-mis-size are counted as local misassemblies
     
     #With reference
-        python /software/UHTS/Quality_control/quast/4.6.0/bin/quast.py -o ${assembly_QUAST_dir} -R ${raw_data_dir}/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa -m 3000 -t 8 -l ${assembly_name} -e --est-ref-size 125m -i 500 -x ${assembly}
+        python /software/UHTS/Quality_control/quast/4.6.0/bin/quast.py -o ${assembly_QUAST_dir} -R ${raw_data_dir}/references/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa -m 3000 -t 8 -l ${assembly_name} -e --est-ref-size 125000000 -i 500 -x 7000 ${assembly}
             #Options entered here are:
                 #"-o": Directory to store all result files
                 #"-R": Reference genome file
