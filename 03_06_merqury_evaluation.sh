@@ -11,8 +11,8 @@
 #SBATCH --partition=pall
 
 #Specify name of assembly (!!!COMMENT OUT THE ONE YOU ARE NOT USING!!!)
-    assembly_name=canu
-    # assembly_name=flye
+    # assembly_name=canu
+    assembly_name=flye
 
 #Specify directory structure and create them
     course_dir=/data/users/srasch/assembly_course
@@ -27,8 +27,11 @@
     mkdir ${assembly_merqury_dir}
 
 #Specify the assembly to use (!!!COMMENT OUT THE ONE YOU ARE NOT USING!!!)
-    assembly=${polish_evaluation_dir}/polish/pilon/canu/canu.fasta
-    # assembly=${polish_evaluation_dir}/polish/pilon/flye/flye.fasta
+    # assembly=${polish_evaluation_dir}/polish/pilon/canu/canu.fasta
+    assembly=${polish_evaluation_dir}/polish/pilon/flye/flye.fasta
+
+chmod ugo+rwx ${assembly}
+cd ${assembly_merqury_dir}
 
 apptainer exec \
 --bind $course_dir \
@@ -36,4 +39,4 @@ apptainer exec \
 merqury.sh \
 ${meryl_dir}/genome.meryl \ 
 ${assembly} \ 
-${assembly_merqury_dir}/${assembly_name}
+${assembly_name}
