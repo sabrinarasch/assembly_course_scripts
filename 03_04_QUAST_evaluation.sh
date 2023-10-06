@@ -24,20 +24,24 @@
             evaulation_dir=${polish_evaluation_dir}/evaluation
                 QUAST_dir=${evaulation_dir}/QUAST
                     assembly_QUAST_dir=${QUAST_dir}/${assembly_name}
+                        no_ref_dir=${assembly_QUAST_dir}/no_reference
+                        ref_dir=${assembly_QUAST_dir}/reference
     
     mkdir ${QUAST_dir}
     mkdir ${assembly_QUAST_dir}
+    mkdir ${no_ref_dir}
+    mkdir ${ref_dir}
 
 #Specify the assembly to use (!!!COMMENT OUT THE ONE YOU ARE NOT USING!!!)
     assembly=${polish_evaluation_dir}/polish/pilon/canu/canu.fasta
     # assembly=${polish_evaluation_dir}/polish/pilon/flye/flye.fasta
 
 #Copy reference to Raw Data
-    ln -s /data/courses/assembly-annotation-course/references ${raw_data_dir}
+    ln -s /data/courses/assembly-annotation-course/references/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa ${raw_data_dir}
 
 #Run QUAST to assess quality of the assemblies
     #Without reference
-        python /software/UHTS/Quality_control/quast/4.6.0/bin/quast.py -o ${assembly_QUAST_dir} -m 3000 -t 8 -l ${assembly_name} -e --est-ref-size 125000000 -i 500 -x 7000 ${assembly}
+        python /software/UHTS/Quality_control/quast/4.6.0/bin/quast.py -o ${no_ref_dir} -m 3000 -t 8 -l ${assembly_name} -e --est-ref-size 125000000 -i 500 -x 7000 ${assembly}
             #Options entered here are:
                 #"-o": Directory to store all result files
                 #"-m": Lower threshold for contig length.
@@ -49,7 +53,7 @@
                 #"-x": Lower threshold for extensive misassembly size. All relocations with inconsistency less than extensive-mis-size are counted as local misassemblies
     
     #With reference
-        python /software/UHTS/Quality_control/quast/4.6.0/bin/quast.py -o ${assembly_QUAST_dir} -R ${raw_data_dir}/references/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa -m 3000 -t 8 -l ${assembly_name} -e --est-ref-size 125000000 -i 500 -x 7000 ${assembly}
+        python /software/UHTS/Quality_control/quast/4.6.0/bin/quast.py -o ${ref_dir} -R ${raw_data_dir}/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa -m 3000 -t 8 -l ${assembly_name} -e --est-ref-size 125000000 -i 500 -x 7000 ${assembly}
             #Options entered here are:
                 #"-o": Directory to store all result files
                 #"-R": Reference genome file
