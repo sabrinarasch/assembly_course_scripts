@@ -26,7 +26,7 @@ Path to data sets on the IBU cluster: **/data/courses/assembly-annotation-course
 ## Roadmap
 
 ### Week 1 - reads & QC
-The goal of week 1 was to run a QC on the datasets and perform k-mer counting. For the k-mer counting a additional script was used best_k.sh, with the genomsize as 150'000'000, which resulted in an optimal k of 19.
+The goal of week 1 was to run a QC on the datasets and perform k-mer counting. For the k-mer counting a additional script was used *best_k.sh*, with the genomsize as 150'000'000, which resulted in an optimal k of 19.
 
 * Scripts: 01_01_fastqc_QC.sh, 01_02_jellyfish_kmer.sh
 * Software: fastqc 0.11.9, jellyfish 2.3.0
