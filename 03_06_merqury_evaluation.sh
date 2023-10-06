@@ -40,9 +40,11 @@
     # assembly=${polish_evaluation_dir}/polish/pilon/flye/flye.fasta #Polished flye assembly
     # assembly=${course_dir}/02_assembly/flye/assembly.fasta #Unpolished flye assembly
 
-chmod ugo+rwx ${assembly}
-cd ${assembly_merqury_dir}
+#Change permisson of assembly otherwise there is an error (I did not fully understand why) and go to folder where results should be stored.
+    chmod ugo+rwx ${assembly}
+    cd ${assembly_merqury_dir}
 
+#Run merqury to assess quality of the assemblies; do not indent
 apptainer exec \
 --bind $course_dir \
 /software/singularity/containers/Merqury-1.3-1.ubuntu20.sif \

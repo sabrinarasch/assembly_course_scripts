@@ -16,7 +16,6 @@
 #3. assembly_name=canu; evaulation_dir=${polish_evaluation_dir}/evaluation_no_polish; assembly=${course_dir}/02_assembly/canu/canu.contigs.fasta
 #4. assembly_name=flye; evaulation_dir=${polish_evaluation_dir}/evaluation_no_polish; assembly=${course_dir}/02_assembly/flye/assembly.fasta
 
-
 #Add the modules
     module add UHTS/Quality_control/quast/4.6.0
 

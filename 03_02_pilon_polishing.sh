@@ -14,7 +14,6 @@
 #1. assembly_name=canu; assembly=${course_dir}/02_assembly/canu/canu.contigs.fasta
 #2. assembly_name=flye; assembly=${course_dir}/02_assembly/flye/assembly.fasta
 
-
 #Specify name of assembly (!!!COMMENT OUT THE ONE YOU ARE NOT USING!!!)
     assembly_name=canu
     # assembly_name=flye

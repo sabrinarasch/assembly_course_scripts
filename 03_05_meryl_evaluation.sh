@@ -23,10 +23,10 @@
     
     mkdir ${meryl_dir}
 
+#Specify where the raw reads are stored (no soft link)
     data_dir=/data/courses/assembly-annotation-course/raw_data/C24/participant_2/Illumina
 
-meryl k=19 count output $SCRATCH/read_1.meryl ${data_dir}/*1.fastq.gz
-
-meryl k=19 count output $SCRATCH/read_2.meryl ${data_dir}/*2.fastq.gz
-
-meryl union-sum output ${meryl_dir}/genome.meryl $SCRATCH/read*.meryl
+#Run meryl to create db for merqury
+    meryl k=19 count output $SCRATCH/read_1.meryl ${data_dir}/*1.fastq.gz
+    meryl k=19 count output $SCRATCH/read_2.meryl ${data_dir}/*2.fastq.gz
+    meryl union-sum output ${meryl_dir}/genome.meryl $SCRATCH/read*.meryl

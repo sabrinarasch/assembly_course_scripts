@@ -22,7 +22,7 @@
     assembly_name=canu
     # assembly_name=flye
 
-#Specify directory structure and create them (!!!COMMENT OUT THE ONEs ALREADY CREATED IN OTHER RUNS!!!)
+#Specify directory structure and create them
     course_dir=/data/users/srasch/assembly_course
         raw_data_dir=${course_dir}/RawData
         polish_evaluation_dir=${course_dir}/03_polish_evaluation
