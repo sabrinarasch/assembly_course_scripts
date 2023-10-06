@@ -10,6 +10,8 @@
 #SBATCH --error=/data/users/srasch/assembly_course/Error/error_meryl_evaluation_%j.e
 #SBATCH --partition=pall
 
+### Run this script 1 time.
+
 #Add the modules
     module add UHTS/Assembler/canu/2.1.1
 

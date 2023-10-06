@@ -10,6 +10,13 @@
 #SBATCH --error=/data/users/srasch/assembly_course/Error/error_QUAST_evaluation_%j.e
 #SBATCH --partition=pall
 
+### Run this script 4 times.
+#1. assembly_name=canu; evaulation_dir=${polish_evaluation_dir}/evaluation;           assembly=${polish_evaluation_dir}/polish/pilon/canu/canu.fasta 
+#2. assembly_name=flye; evaulation_dir=${polish_evaluation_dir}/evaluation;           assembly=${polish_evaluation_dir}/polish/pilon/flye/flye.fasta
+#3. assembly_name=canu; evaulation_dir=${polish_evaluation_dir}/evaluation_no_polish; assembly=${course_dir}/02_assembly/canu/canu.contigs.fasta
+#4. assembly_name=flye; evaulation_dir=${polish_evaluation_dir}/evaluation_no_polish; assembly=${course_dir}/02_assembly/flye/assembly.fasta
+
+
 #Add the modules
     module add UHTS/Quality_control/quast/4.6.0
 
@@ -22,6 +29,7 @@
         raw_data_dir=${course_dir}/RawData
         polish_evaluation_dir=${course_dir}/03_polish_evaluation
             evaulation_dir=${polish_evaluation_dir}/evaluation
+            # evaulation_dir=${polish_evaluation_dir}/evaluation_no_polish #Use this instead of the upper one when analysing the not polished assemblies
                 QUAST_dir=${evaulation_dir}/QUAST
                     assembly_QUAST_dir=${QUAST_dir}/${assembly_name}
                         no_ref_dir=${assembly_QUAST_dir}/no_reference
@@ -33,8 +41,10 @@
     mkdir ${ref_dir}
 
 #Specify the assembly to use (!!!COMMENT OUT THE ONE YOU ARE NOT USING!!!)
-    assembly=${polish_evaluation_dir}/polish/pilon/canu/canu.fasta
-    # assembly=${polish_evaluation_dir}/polish/pilon/flye/flye.fasta
+    assembly=${polish_evaluation_dir}/polish/pilon/canu/canu.fasta #Polished canu assembly
+    # assembly=${course_dir}/02_assembly/canu/canu.contigs.fasta #Unpolished canu assembly
+    # assembly=${polish_evaluation_dir}/polish/pilon/flye/flye.fasta #Polished flye assembly
+    # assembly=${course_dir}/02_assembly/flye/assembly.fasta #Unpolished flye assembly
 
 #Copy reference to Raw Data
     ln -s /data/courses/assembly-annotation-course/references/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa ${raw_data_dir}

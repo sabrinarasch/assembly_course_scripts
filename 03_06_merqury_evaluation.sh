@@ -10,6 +10,12 @@
 #SBATCH --error=/data/users/srasch/assembly_course/Error/error_merqury_evaluation_%j.e
 #SBATCH --partition=pall
 
+### Run this script 4 times.
+#1. assembly_name=canu; evaulation_dir=${polish_evaluation_dir}/evaluation;           meryl_dir=${evaulation_dir}/meryl;                   assembly=${polish_evaluation_dir}/polish/pilon/canu/canu.fasta 
+#2. assembly_name=flye; evaulation_dir=${polish_evaluation_dir}/evaluation;           meryl_dir=${evaulation_dir}/meryl;                   assembly=${polish_evaluation_dir}/polish/pilon/flye/flye.fasta
+#3. assembly_name=canu; evaulation_dir=${polish_evaluation_dir}/evaluation_no_polish; meryl_dir=${polish_evaluation_dir}/evaluation/meryl; assembly=${course_dir}/02_assembly/canu/canu.contigs.fasta
+#4. assembly_name=flye; evaulation_dir=${polish_evaluation_dir}/evaluation_no_polish; meryl_dir=${polish_evaluation_dir}/evaluation/meryl; assembly=${course_dir}/02_assembly/flye/assembly.fasta
+
 #Specify name of assembly (!!!COMMENT OUT THE ONE YOU ARE NOT USING!!!)
     assembly_name=canu
     # assembly_name=flye
@@ -19,7 +25,9 @@
         raw_data_dir=${course_dir}/RawData
         polish_evaluation_dir=${course_dir}/03_polish_evaluation
             evaulation_dir=${polish_evaluation_dir}/evaluation
+            # evaulation_dir=${polish_evaluation_dir}/evaluation_no_polish #Use this instead of the upper one when analysing the not polished assemblies
                 meryl_dir=${evaulation_dir}/meryl
+                # meryl_dir=${polish_evaluation_dir}/evaluation/meryl #Use this instead of the upper one when analysing the not polished assemblies
                 merqury_dir=${evaulation_dir}/merqury
                     assembly_merqury_dir=${merqury_dir}/${assembly_name}
     
@@ -27,8 +35,10 @@
     mkdir ${assembly_merqury_dir}
 
 #Specify the assembly to use (!!!COMMENT OUT THE ONE YOU ARE NOT USING!!!)
-    assembly=${polish_evaluation_dir}/polish/pilon/canu/canu.fasta
-    # assembly=${polish_evaluation_dir}/polish/pilon/flye/flye.fasta
+    assembly=${polish_evaluation_dir}/polish/pilon/canu/canu.fasta #Polished canu assembly
+    # assembly=${course_dir}/02_assembly/canu/canu.contigs.fasta #Unpolished canu assembly
+    # assembly=${polish_evaluation_dir}/polish/pilon/flye/flye.fasta #Polished flye assembly
+    # assembly=${course_dir}/02_assembly/flye/assembly.fasta #Unpolished flye assembly
 
 chmod ugo+rwx ${assembly}
 cd ${assembly_merqury_dir}

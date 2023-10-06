@@ -10,6 +10,11 @@
 #SBATCH --error=/data/users/srasch/assembly_course/Error/error_pilon_polishing_%j.e
 #SBATCH --partition=pall
 
+### Run this script 2 times.
+#1. assembly_name=canu; assembly=${course_dir}/02_assembly/canu/canu.contigs.fasta
+#2. assembly_name=flye; assembly=${course_dir}/02_assembly/flye/assembly.fasta
+
+
 #Specify name of assembly (!!!COMMENT OUT THE ONE YOU ARE NOT USING!!!)
     assembly_name=canu
     # assembly_name=flye

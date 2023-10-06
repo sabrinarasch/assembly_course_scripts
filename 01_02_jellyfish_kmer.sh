@@ -10,6 +10,8 @@
 #SBATCH --error=/data/users/srasch/assembly_course/Error/error_jellyfish_kmer_%j.e
 #SBATCH --partition=pall
 
+### Run this script 1 time.
+
 #Add the modules
     module add UHTS/Analysis/jellyfish/2.3.0
 

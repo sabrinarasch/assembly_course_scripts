@@ -10,6 +10,13 @@
 #SBATCH --error=/data/users/srasch/assembly_course/Error/error_BUSCO_evaluation_%j.e
 #SBATCH --partition=pall
 
+### Run this script 5 times.
+#1. assembly_name=canu;    evaulation_dir=${polish_evaluation_dir}/evaluation;           assembly=${polish_evaluation_dir}/polish/pilon/canu/canu.fasta 
+#2. assembly_name=flye;    evaulation_dir=${polish_evaluation_dir}/evaluation;           assembly=${polish_evaluation_dir}/polish/pilon/flye/flye.fasta
+#3. assembly_name=trinity; evaulation_dir=${polish_evaluation_dir}/evaluation;           assembly=${course_dir}/02_assembly/trinity/Trinity.fasta
+#4. assembly_name=canu;    evaulation_dir=${polish_evaluation_dir}/evaluation_no_polish; assembly=${course_dir}/02_assembly/canu/canu.contigs.fasta
+#5. assembly_name=flye;    evaulation_dir=${polish_evaluation_dir}/evaluation_no_polish; assembly=${course_dir}/02_assembly/flye/assembly.fasta
+
 #Add the modules
     module add UHTS/Analysis/busco/4.1.4
 
@@ -22,6 +29,7 @@
     course_dir=/data/users/srasch/assembly_course
         polish_evaluation_dir=${course_dir}/03_polish_evaluation
             evaulation_dir=${polish_evaluation_dir}/evaluation
+            # evaulation_dir=${polish_evaluation_dir}/evaluation_no_polish #Use this instead of the upper one when analysing the not polished assemblies
                 BUSCO_dir=${evaulation_dir}/BUSCO
                     assembly_BUSCO_dir=${BUSCO_dir}/${assembly_name}
     
@@ -30,9 +38,11 @@
     mkdir ${assembly_BUSCO_dir}
 
 #Specify the assembly to use (!!!COMMENT OUT THE ONE YOU ARE NOT USING!!!)
-    assembly=${polish_evaluation_dir}/polish/pilon/canu/canu.fasta
-    # assembly=${polish_evaluation_dir}/polish/pilon/flye/flye.fasta
-    # assembly=${course_dir}/02_assembly/trinity/Trinity.fasta
+    assembly=${polish_evaluation_dir}/polish/pilon/canu/canu.fasta #Polished canu assembly
+    # assembly=${course_dir}/02_assembly/canu/canu.contigs.fasta #Unpolished canu assembly
+    # assembly=${polish_evaluation_dir}/polish/pilon/flye/flye.fasta #Polished flye assembly
+    # assembly=${course_dir}/02_assembly/flye/assembly.fasta #Unpolished flye assembly
+    # assembly=${course_dir}/02_assembly/trinity/Trinity.fasta #Unpolished trinity assembly -> but is in evaulation folder
 
 #Go to folder where the evaluation results will be stored
     cd ${assembly_BUSCO_dir}

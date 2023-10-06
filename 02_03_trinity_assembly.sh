@@ -10,6 +10,8 @@
 #SBATCH --error=/data/users/srasch/assembly_course/Error/error_trinity_assembly_%j.e
 #SBATCH --partition=pall
 
+### Run this script 1 time.
+
 #Add the modules
     module add UHTS/Assembler/trinityrnaseq/2.5.1
 

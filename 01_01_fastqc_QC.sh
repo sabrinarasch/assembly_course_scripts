@@ -10,6 +10,8 @@
 #SBATCH --error=/data/users/srasch/assembly_course/Error/error_fastqc_QC_%j.e
 #SBATCH --partition=pall
 
+### Run this script 1 time.
+
 #Add the modules
     module add UHTS/Quality_control/fastqc/0.11.9
 

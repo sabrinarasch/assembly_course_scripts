@@ -10,6 +10,10 @@
 #SBATCH --error=/data/users/srasch/assembly_course/Error/error_bowtie2_polishing_%j.e
 #SBATCH --partition=pall
 
+### Run this script 2 times.
+#1. assembly_name=canu; assembly=${course_dir}/02_assembly/canu/canu.contigs.fasta
+#2. assembly_name=flye; assembly=${course_dir}/02_assembly/flye/assembly.fasta
+
 #Add the modules
     module add UHTS/Aligner/bowtie2/2.3.4.1
     module add UHTS/Analysis/samtools/1.10
