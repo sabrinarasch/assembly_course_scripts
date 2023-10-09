@@ -36,15 +36,14 @@ These questions are copied from the [course website](https://docs.pages.bioinfor
 ### Assembly evaluation
 #### Assessing quality with BUSCO (Complete score above 95% is good)
 
-|                               busco | canu | flye | trinity | canu | flye |
-|                                     | poli | poli |     raw |  raw |  raw |
-|-------------------------------------|------|------|---------|------|------|
-|                 Complete BUSCOs (C) | 4524 | 4543 |    2985 | 4361 | 4509 |
-| Complete and single-copy BUSCOs (S) | 4474 | 4492 |     923 | 4288 | 4455 |
-|  Complete and duplicated BUSCOs (D) |   50 |   51 |    2062 |   73 |   54 |
-|               Fragmented BUSCOs (F) |   12 |    3 |     347 |   61 |   17 |
-|                  Missing BUSCOs (M) |   60 |   50 |    1264 |  174 |   70 |
-|         Total BUSCO groups searched | 4596 | 4596 |    4596 | 4596 | 4596 |
+|                                     |   canu poli |   flye poli | trinity raw |    canu raw |    flye raw |
+|-------------------------------------|-------------|-------------|-------------|-------------|-------------|
+|                 Complete BUSCOs (C) |        4524 |        4543 |        2985 |        4361 |        4509 |
+| Complete and single-copy BUSCOs (S) |        4474 |        4492 |         923 |        4288 |        4455 |
+|  Complete and duplicated BUSCOs (D) |          50 |          51 |        2062 |          73 |          54 |
+|               Fragmented BUSCOs (F) |          12 |           3 |         347 |          61 |          17 |
+|                  Missing BUSCOs (M) |          60 |          50 |        1264 |         174 |          70 |
+|         Total BUSCO groups searched |        4596 |        4596 |        4596 |        4596 |        4596 |
 
 * How do your genome assemblies look according to your BUSCO results? Is one genome assembly better than the other?
     * *canu:* C: 98.4% [S:97.3%, D:1.1%], F:0.3%, M:1.3%, n:4596
@@ -53,21 +52,20 @@ These questions are copied from the [course website](https://docs.pages.bioinfor
 
 * How does your transcriptome assembly look? Are there many duplicated genes? Can you explain the differences with the whole genome assemblies?
     * *trinity:* C:65.0% [S:20.1%, D:44.9%], F:7.6%, M:27.4%, n:4596
-    * *There are actually more duplicated ones than single-copy; and there are a lot of missing ones.*
+    * *The complete score is just 65% wich is very low. There are actually more duplicated ones than single-copy; and there are a lot of missing ones.*
     * *For transcriptomes or annotated gene sets this indicates that these orthologs are indeed missing or the transcripts or gene models are so incomplete/fragmented that they could not even meet the criteria to be considered as fragmented.* from [BUSCO](https://busco.ezlab.org/busco_userguide.html#interpreting-the-results)
 
 #### Assessing quality with QUAST
 
-|Assembly | canu poli | flye poli |  canu raw |  flye raw |
-|         |    no_ref |    no_ref |    no_ref |    no_ref |
-|---------|-----------|-----------|-----------|-----------|
-|    NG50 |    433815 |   8822047 |    433505 |   8819554 |
-|    NG75 |    211025 |   1705972 |    209127 |   1705414 |
-|    LG50 |        79 |         6 |        79 |         6 |
-|    LG75 |       183 |        13 |       184 |        13 |
+| Assembly | canu poli no_ref | flye poli no_ref |  canu raw no_ref |  flye raw no_ref |
+|----------|------------------|------------------|------------------|------------------|
+|     NG50 |           433815 |          8822047 |           433505 |          8819554 |
+|     NG75 |           211025 |          1705972 |           209127 |          1705414 |
+|     LG50 |               79 |                6 |               79 |                6 |
+|     LG75 |              183 |               13 |              184 |               13 |
 
-|                    Assembly |     canu poli |     flye poli |      canu raw |      flye raw |
-|                             |           ref |           ref |           ref |           ref |
+
+|                    Assembly | canu poli ref | flye poli ref |  canu raw ref |  flye raw ref |
 |-----------------------------|---------------|---------------|---------------|---------------|
 |                        NG50 |        472804 |       8822047 |        472513 |       8819554 |
 |                        NG75 |        238409 |       3987995 |        237999 |       3987766 |
