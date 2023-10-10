@@ -11,8 +11,8 @@
 #SBATCH --partition=pall
 
 ### Run this script 2 times.
-#1. assembly_name=canu; assembly=${polish_evaluation_dir}/polish/pilon/canu/canu.fasta
-#2. assembly_name=flye; assembly=${polish_evaluation_dir}/polish/pilon/flye/flye.fasta
+#1. assembly_name=canu; assembly=${course_dir}/02_assembly/canu/canu.contigs.fasta
+#2. assembly_name=flye; assembly=${course_dir}/02_assembly/flye/assembly.fasta
 
 #Add the modules
     module add UHTS/Analysis/mummer/4.0.0beta1
@@ -33,8 +33,8 @@
     mkdir ${assembly_nucmer_dir}
 
 #Specify the assembly to use (!!!COMMENT OUT THE ONE YOU ARE NOT USING!!!)
-    assembly=${polish_evaluation_dir}/polish/pilon/canu/canu.fasta
-    # assembly=${polish_evaluation_dir}/polish/pilon/flye/flye.fasta
+    assembly=${course_dir}/02_assembly/canu/canu.contigs.fasta
+    # assembly=${course_dir}/02_assembly/flye/assembly.fasta
 
 #Specify the reference genome
     reference=${raw_data_dir}/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa
