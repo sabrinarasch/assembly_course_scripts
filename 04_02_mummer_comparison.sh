@@ -11,8 +11,9 @@
 #SBATCH --partition=pall
 
 ### Run this script 2 times.
-#1. assembly_name=canu; assembly=${course_dir}/02_assembly/canu/canu.contigs.fasta
-#2. assembly_name=flye; assembly=${course_dir}/02_assembly/flye/assembly.fasta
+#1. assembly_name=canu;    assembly=${course_dir}/02_assembly/canu/canu.contigs.fasta; reference=${raw_data_dir}/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa; match_file=${assembly_nucmer_dir}/canu.delta 
+#2. assembly_name=flye;    assembly=${course_dir}/02_assembly/flye/assembly.fasta;     reference=${raw_data_dir}/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa; match_file=${assembly_nucmer_dir}/flye.delta
+#3. assembly_name=compare; assembly=${course_dir}/02_assembly/canu/canu.contigs.fasta; reference=${course_dir}/02_assembly/flye/assembly.fasta;               match_file=${assembly_nucmer_dir}/compare.delta
 
 #Add the modules
     module add UHTS/Analysis/mummer/4.0.0beta1
@@ -21,6 +22,7 @@
 #Specify name of assembly (!!!COMMENT OUT THE ONE YOU ARE NOT USING!!!)
     assembly_name=canu
     # assembly_name=flye
+    # assembly_name=compare
 
 #Specify directory structure and create them
     course_dir=/data/users/srasch/assembly_course
@@ -40,10 +42,12 @@
 
 #Specify the reference genome
     reference=${raw_data_dir}/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa
+    # reference=${course_dir}/02_assembly/flye/assembly.fasta
 
 #Specify the delta file to use (!!!COMMENT OUT THE ONE YOU ARE NOT USING!!!)
     match_file=${assembly_nucmer_dir}/canu.delta 
     # match_file=${assembly_nucmer_dir}/flye.delta
+    # match_file=${assembly_nucmer_dir}/compare.delta
 
 cd ${assembly_mummer_dir}
 
