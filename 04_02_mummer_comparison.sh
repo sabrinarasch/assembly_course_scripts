@@ -10,7 +10,7 @@
 #SBATCH --error=/data/users/srasch/assembly_course/Error/error_mummer_comparison_%j.e
 #SBATCH --partition=pall
 
-### Run this script 2 times.
+### Run this script 3 times.
 #1. assembly_name=canu;    assembly=${course_dir}/02_assembly/canu/canu.contigs.fasta; reference=${raw_data_dir}/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa; match_file=${assembly_nucmer_dir}/canu.delta 
 #2. assembly_name=flye;    assembly=${course_dir}/02_assembly/flye/assembly.fasta;     reference=${raw_data_dir}/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa; match_file=${assembly_nucmer_dir}/flye.delta
 #3. assembly_name=compare; assembly=${course_dir}/02_assembly/canu/canu.contigs.fasta; reference=${course_dir}/02_assembly/flye/assembly.fasta;               match_file=${assembly_nucmer_dir}/compare.delta
