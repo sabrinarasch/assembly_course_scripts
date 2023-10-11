@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-#SBATCH --cpus-per-task=12
-#SBATCH --mem=48G
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=16G
 #SBATCH --time=06:00:00
 #SBATCH --job-name=mummer_comparison
 #SBATCH --mail-user=sabrina.rasch@students.unibe.ch
@@ -11,11 +11,12 @@
 #SBATCH --partition=pall
 
 ### Run this script 2 times.
-#1. assembly_name=canu; assembly=${polish_evaluation_dir}/polish/pilon/canu/canu.fasta
-#2. assembly_name=flye; assembly=${polish_evaluation_dir}/polish/pilon/flye/flye.fasta
+#1. assembly_name=canu; assembly=${course_dir}/02_assembly/canu/canu.contigs.fasta
+#2. assembly_name=flye; assembly=${course_dir}/02_assembly/flye/assembly.fasta
 
 #Add the modules
     module add UHTS/Analysis/mummer/4.0.0beta1
+    export PATH=/software/bin:$PATH
 
 #Specify name of assembly (!!!COMMENT OUT THE ONE YOU ARE NOT USING!!!)
     assembly_name=canu
@@ -23,6 +24,7 @@
 
 #Specify directory structure and create them
     course_dir=/data/users/srasch/assembly_course
+        raw_data_dir=${course_dir}/RawData
         comparison_dir=${course_dir}/04_comparison
             nucmer_dir=${comparison_dir}/nucmer
                 assembly_nucmer_dir=${nucmer_dir}/${assembly_name}
@@ -33,17 +35,17 @@
     mkdir ${assembly_mummer_dir}
 
 #Specify the assembly to use (!!!COMMENT OUT THE ONE YOU ARE NOT USING!!!)
-    assembly=${polish_evaluation_dir}/polish/pilon/canu/canu.fasta
-    # assembly=${polish_evaluation_dir}/polish/pilon/flye/flye.fasta
+    assembly=${course_dir}/02_assembly/canu/canu.contigs.fasta
+    # assembly=${course_dir}/02_assembly/flye/assembly.fasta
 
 #Specify the reference genome
     reference=${raw_data_dir}/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa
 
-
 #Specify the delta file to use (!!!COMMENT OUT THE ONE YOU ARE NOT USING!!!)
-    match_file=${assembly_nucmer_dir}/canu.delta #Not sure if this is right yet. Have to run nucmer first and see what the output is.
-    # match_file=${assembly_nucmer_dir}/flye.delta #Not sure if this is right yet. Have to run nucmer first and see what the output is.
-#Specify the reference genome
+    match_file=${assembly_nucmer_dir}/canu.delta 
+    # match_file=${assembly_nucmer_dir}/flye.delta
+
+cd ${assembly_mummer_dir}
 
 #Run mummerplot to show results
     mummerplot -f -l -R ${reference} -Q ${assembly} --large --png ${match_file}
