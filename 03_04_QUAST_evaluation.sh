@@ -22,6 +22,7 @@
 #Specify name of assembly (!!!COMMENT OUT THE ONE YOU ARE NOT USING!!!)
     assembly_name=canu
     # assembly_name=flye
+    # assembly_name=all
 
 #Specify directory structure and create them
     course_dir=/data/users/srasch/assembly_course
@@ -73,3 +74,18 @@
                 #"--est-ref-size": Estimated reference size
                 #"-i": the minimum alignment length
                 #"-x": Lower threshold for extensive misassembly size. All relocations with inconsistency less than extensive-mis-size are counted as local misassemblies
+
+#Take this code when you want to analyse all assemblies together.
+    # assembly1=${polish_evaluation_dir}/polish/pilon/canu/canu.fasta #Polished canu assembly
+    # assembly2=${course_dir}/02_assembly/canu/canu.contigs.fasta #Unpolished canu assembly
+    # assembly3=${polish_evaluation_dir}/polish/pilon/flye/flye.fasta #Polished flye assembly
+    # assembly4=${course_dir}/02_assembly/flye/assembly.fasta #Unpolished flye assembly
+
+    # assembly1_name=canu_poli
+    # assembly2_name=canu_raw
+    # assembly3_name=flye_poli
+    # assembly4_name=flye_raw
+
+    # python /software/UHTS/Quality_control/quast/4.6.0/bin/quast.py -o ${no_ref_dir} -m 3000 -t 8 -l ${assembly1_name},${assembly2_name},${assembly3_name},${assembly4_name} -e --est-ref-size 125000000 -i 500 -x 7000 ${assembly1} ${assembly2} ${assembly3} ${assembly4}
+
+    # python /software/UHTS/Quality_control/quast/4.6.0/bin/quast.py -o ${ref_dir} -R ${raw_data_dir}/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa -m 3000 -t 8 -l ${assembly1_name},${assembly2_name},${assembly3_name},${assembly4_name} -e --est-ref-size 125000000 -i 500 -x 7000 ${assembly1} ${assembly2} ${assembly3} ${assembly4}
