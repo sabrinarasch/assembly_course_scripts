@@ -5,6 +5,7 @@
 #SBATCH --time=01:00:00
 #SBATCH --job-name=TE_dating
 #SBATCH --mail-user=sabrina.rasch@students.unibe.ch
+#SBATCH --mail-type=begin,end,fail
 #SBATCH --output=/data/users/srasch/assembly_course/Output/output_TE_dating_%j.o
 #SBATCH --error=/data/users/srasch/assembly_course/Error/error_TE_dating_%j.e
 #SBATCH --partition=pall
@@ -13,7 +14,6 @@
     # 1. conda create -n assembly_course_environment
     # 2. conda activate assembly_course_environment
     # 3. conda install -c bioconda perl-bioperl
-    
     # 4. conda activate assembly_course_environment
     # 5. sbatch 06_01_TE_dating.sh
 
@@ -32,6 +32,8 @@ genome=polished.fasta
 
 cd ${TE_dating}
 
+#Task 1
 # perl parseRM.pl -i ${input_file} -l 50,1 -v #Output in input directory -> move it to output directory
 
+#Task 2
 sed '1d;3d' ${TE_dating}/${genome}.mod.out.landscape.Div.Rname.tab > ${genome}.sed.tab
