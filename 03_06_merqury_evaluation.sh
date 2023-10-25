@@ -46,6 +46,12 @@
 
 #Run merqury to assess quality of the assemblies; do not indent
 apptainer exec \
---bind $course_dir \
+--bind ${course_dir} \
 /software/singularity/containers/Merqury-1.3-1.ubuntu20.sif \
 merqury.sh ${meryl_dir}/genome.meryl ${assembly} ${assembly_name}
+        #"apptainer exec":
+        #"--bind ${course_dir}":
+        #"/software/singularity/containers/Merqury-1.3-1.ubuntu20.sif \":
+        #"merqury.sh ${meryl_dir}/genome.meryl ${assembly} ${assembly_name}":
+
+

@@ -29,4 +29,13 @@
 #Run meryl to create db for merqury
     meryl k=19 count output $SCRATCH/read_1.meryl ${data_dir}/*1.fastq.gz
     meryl k=19 count output $SCRATCH/read_2.meryl ${data_dir}/*2.fastq.gz
+        #Options entered here are:
+            #"k":
+            #"count":
+            #"output":
+
     meryl union-sum output ${meryl_dir}/genome.meryl $SCRATCH/read*.meryl
+        #Options entered here are:
+            #"union-sum":
+            #"output":
+
