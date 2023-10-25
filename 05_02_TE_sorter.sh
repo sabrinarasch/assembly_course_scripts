@@ -26,7 +26,7 @@ module add UHTS/Analysis/SeqKit/0.13.2
 
 #Specify directory structure and create them
     course_dir=/data/users/srasch/assembly_course
-        annotation_dir=${course_dir}/05_annotation
+        annotation_dir=${course_dir}/05_TE_annotation
             TE_annotator_dir=${annotation_dir}/TE_annotator
             TE_sorter_dir=${annotation_dir}/TE_sorter
                 family_sorter_dir=${TE_sorter_dir}/${family_name}

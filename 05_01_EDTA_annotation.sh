@@ -13,7 +13,7 @@
 #Specify directory structure and create them
     course_dir=/data/users/srasch/assembly_course
         raw_data_dir=${course_dir}/RawData
-        annotation_dir=${course_dir}/05_annotation
+        annotation_dir=${course_dir}/05_TE_annotation
             TE_annotator_dir=${annotation_dir}/TE_annotator
     
     mkdir ${annotation_dir}
