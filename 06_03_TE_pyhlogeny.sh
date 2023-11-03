@@ -10,6 +10,10 @@
 #SBATCH --error=/data/users/srasch/assembly_course/Error/error_TE_pyhlogeny_%j.e
 #SBATCH --partition=pall
 
+### Run this script 2 times.
+#1. family_name=Gypsy; family_tag=Ty3-RT
+#2. family_name=Copia; family_tag=Ty1-RT
+
 #Add the modules
     module add UHTS/Analysis/SeqKit/0.13.2
     module add SequenceAnalysis/MultipleSequenceAlignment/clustal-omega/1.2.4
@@ -19,8 +23,8 @@
     family_name=Gypsy
     # family_name=Copia
 
-    family_tag=Ty3-RT #for Gypsy
-    # family_tag=Ty1-RT #for Copia
+    family_tag=Ty3-RT
+    # family_tag=Ty1-RT
 
 #Specify directory structure and create them
     course_dir=/data/users/srasch/assembly_course

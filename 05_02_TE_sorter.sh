@@ -11,10 +11,10 @@
 #SBATCH --partition=pall
 
 ### Run this script 4 times.
-#1. family_name=Gypsy;                                         family_sorter_dir=${TE_sorter_dir}/${family_name}; cat ${TE_annotator_dir}/polished.fasta.mod.EDTA.TElib.fa | seqkit grep -r -p "Gypsy" > ${family_sorter_dir}/Gypsy.fa;  family_file=${family_sorter_dir}/Gypsy.fa
-#2. family_name=Copia;                                         family_sorter_dir=${TE_sorter_dir}/${family_name}; cat ${TE_annotator_dir}/polished.fasta.mod.EDTA.TElib.fa | seqkit grep -r -p "Copia" > ${family_sorter_dir}/Copia.fa;  family_file=${family_sorter_dir}/Copia.fa
-#3. family_name=Gypsy; brass_dir=${TE_sorter_dir}/brassicacea; family_sorter_dir=${brass_dir}/${family_name};     cat ${brass_dir}/Brassicaceae_repbase_all_march2019.fasta | seqkit grep -r -p "Gypsy" > ${family_sorter_dir}/Gypsy.fa; family_file=${family_sorter_dir}/Gypsy.fa
-#4. family_name=Copia; brass_dir=${TE_sorter_dir}/brassicacea; family_sorter_dir=${brass_dir}/${family_name};     cat ${brass_dir}/Brassicaceae_repbase_all_march2019.fasta | seqkit grep -r -p "Copia" > ${family_sorter_dir}/Copia.fa; family_file=${family_sorter_dir}/Copia.fa
+#1. family_name=Gypsy;                                         family_sorter_dir=${TE_sorter_dir}/${family_name}; cat ${TE_annotator_dir}/polished.fasta.mod.EDTA.TElib.fa | seqkit grep -r -p "Gypsy" > ${family_sorter_dir}/Gypsy.fa;                  family_file=${family_sorter_dir}/Gypsy.fa
+#2. family_name=Copia;                                         family_sorter_dir=${TE_sorter_dir}/${family_name}; cat ${TE_annotator_dir}/polished.fasta.mod.EDTA.TElib.fa | seqkit grep -r -p "Copia" > ${family_sorter_dir}/Copia.fa;                  family_file=${family_sorter_dir}/Copia.fa
+#3. family_name=Gypsy; brass_dir=${TE_sorter_dir}/brassicacea; family_sorter_dir=${brass_dir}/${family_name};     cat ${course_dir}/CDS_annotation/Brassicaceae_repbase_all_march2019.fasta | seqkit grep -r -p "Gypsy" > ${family_sorter_dir}/Gypsy.fa; family_file=${family_sorter_dir}/Gypsy.fa
+#4. family_name=Copia; brass_dir=${TE_sorter_dir}/brassicacea; family_sorter_dir=${brass_dir}/${family_name};     cat ${course_dir}/CDS_annotation/Brassicaceae_repbase_all_march2019.fasta | seqkit grep -r -p "Copia" > ${family_sorter_dir}/Copia.fa; family_file=${family_sorter_dir}/Copia.fa
 
 module add UHTS/Analysis/SeqKit/0.13.2
 

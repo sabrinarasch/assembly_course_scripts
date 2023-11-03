@@ -10,6 +10,8 @@
 #SBATCH --error=/data/users/srasch/assembly_course/Error/error_EDTA_annotation_%j.e
 #SBATCH --partition=pall
 
+### Run this script 1 time.
+
 #Specify directory structure and create them
     course_dir=/data/users/srasch/assembly_course
         raw_data_dir=${course_dir}/RawData

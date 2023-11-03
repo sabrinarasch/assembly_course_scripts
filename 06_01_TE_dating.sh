@@ -16,6 +16,10 @@
     # 3. conda install -c bioconda perl-bioperl
     # 4. conda activate assembly_course_environment
     # 5. sbatch 06_01_TE_dating.sh
+    ### Run this script 3 times.
+        #1. To create directories
+        #2. To split the amount of DNA
+        #3. To modify the output file
 
 #Specify directory structure and create them
     course_dir=/data/users/srasch/assembly_course

@@ -11,6 +11,10 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=16
 
+### Run this script 2 times.
+#1. To make the control files
+#2. To run maker
+
 #Add the modules
     module add SequenceAnalysis/GenePrediction/maker/2.31.9
 
