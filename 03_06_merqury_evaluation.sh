@@ -51,7 +51,7 @@ apptainer exec \
 merqury.sh ${meryl_dir}/genome.meryl ${assembly} ${assembly_name}
     #Options entered here are:
         #"apptainer exec": execute container with given options
-        #"--bind ${course_dir}": a user-bind path specification.
+        #"--bind": a user-bind path specification.
         #"/software/singularity/containers/Merqury-1.3-1.ubuntu20.sif \": Singularity Image Format container to be executed
         #"merqury.sh": command to be executed
         #"${meryl_dir}/genome.meryl": k-mer counts of the read set

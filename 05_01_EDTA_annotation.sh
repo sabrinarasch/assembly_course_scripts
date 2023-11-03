@@ -42,15 +42,13 @@ EDTA.pl \
 --anno 1 \
 --threads 50
     #Options entered here are:
-        #"singularity exec":
-        #"--bind ${course_dir}":
-        #"--bind ${TE_annotator_dir}":
-        #"--bind ${raw_data_dir}":
-        #"${course_dir}/containers2/EDTA_v1.9.6.sif":
-        #"EDTA.pl":
-        #"--genome ${raw_data_dir}/polished.fasta":
-        #"--species others":
-        #"--step all":
-        #"--cds ${course_dir}/CDS_annotation/TAIR10_cds_20110103_representative_gene_model_updated":
-        #"--anno 1":
-        #"--threads 50":
+        #"singularity exec": execute container with given options
+        #"--bind": a user-bind path specification.
+        #"${course_dir}/containers2/EDTA_v1.9.6.sif": Singularity Image Format container to be executed
+        #"EDTA.pl": command to be executed
+        #"--genome": The genome FASTA file.
+        #"--species others": Specify the species for identification of TIR candidates.
+        #"--step all": Specify which steps you want to run EDTA. all: run the entire pipeline
+        #"--cds": Provide a FASTA file containing the coding sequence (no introns, UTRs, nor TEs) of this genome or its close relative.
+        #"--anno 1": Perform (1) or not perform (0, default) whole-genome TE annotation after TE library construction.
+        #"--threads 50": Number of theads to run this script
