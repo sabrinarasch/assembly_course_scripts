@@ -41,9 +41,9 @@
 #Split the amount of DNA by bins of % divergence (or My) for each repeat name, family or class.
     # perl parseRM.pl -i ${input_file} -l 50,1 -v
         #Options entered here are:
-            #"-i":
-            #"-l 50,1":
-            #"-v":
+            #"-i": run script on this file
+            #"-l 50,1": -l To split the amount of DNA by bins of %div or My, allowing to generate landscape graphs for each repeat name, family or class
+            #"-v": Verbose mode, make the script talks to you
     # mv ${in_dir}/*landscape* .
 
 #Modify the output file by removing the 1st and the 3rd line.
