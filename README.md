@@ -98,7 +98,6 @@ Decided to take the polished flye and trinity assembly of Monsur.
     * 5.1: TE_annotator
     * 5.2: TE_sorter
     * 5.3: TEs_by_Clades_and_Range_contig_10_pilon.pdf
-
 * Container
     * 5.1:
         * singularity
@@ -120,7 +119,6 @@ The goal of week 6 was to estimate the age of insertion and analyse the phylogen
     * 6.1: TE_dating
     * 6.2: TE-myr_lines.pdf, TE-myr.pdf
     * 6.3: TE_phylogeny
-
 * Container
     * 6.1:
         * conda create -n assembly_course_environment
@@ -134,7 +132,6 @@ The goal of week 7 was to annotate the genome and create a genome database.
 * Input:
     * 7.1: polished flye assembly and trinity assembly
 * Output: 07_TE_annotation
-
 * Container
     * 7.1:
         * singularity
