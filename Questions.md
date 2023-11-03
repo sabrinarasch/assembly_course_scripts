@@ -197,3 +197,32 @@ These questions are copied from the [course website](https://docs.pages.bioinfor
     * *Yes they do look good.*
 * Does one assembly perfom better than the other?
     * *Again flye does a bit better than canu.*
+
+## Week 4
+### Comparing genomes
+* What does the dotplot show and what do the different colors mean?
+    * *Answer*
+* Do your genome assemblies look very different from the reference genome?
+    * *Answer*
+* How different are the two genome assemblies compared to each other?
+    * *Answer*
+* (If you assembled different accessions: Do you see any differences between the accessions?)
+    * *Answer*
+
+## Week 5
+### Annotation of Transposable Elements (TEs)
+* Report the number of base pairs and the percent of the genome occupied by each superfamily. (You can find the results in $genome.mod.EDTA.TEanno.sum)
+    * *Answer*
+* Share the results and compare the clades abundance (percent of the occupied genome) between Arabidopsis accessions. (See $.liban.rexdb-plant.cls.tsv for the classification of TE families into clades and $genome.mod.EDTA.TEanno.sum for their abundance. Visualize and compare the difference between accessions with a bar plot.)
+    * *Answer*
+
+### Automated annotation - The Extensive de novo TE Annotator (EDTA)
+1. A non-redundant TE library: $genome.mod.EDTA.TElib.fa. TEs are classified into the superfamily level and using the three-letter naming system reported in Wicker et al. (2007). Each sequence can be considered as a TE family.
+2. Whole-genome TE annotation: $genome.mod.EDTA.TEanno.gff3. This file contains both structurally intact and fragmented TE annotations (--anno 1 required)
+3. Intact TE annotation: $genome.mod.EDTA.intact.gff3. This file contains only structurally intact TE annotations (--anno 1 required)
+4. Summary of whole-genome TE annotation: $genome.mod.EDTA.TEanno.sum (--anno 1 required)
+5. Repeatmasker output: $genome.mod.EDTA.anno/$genome.mod.out. This file contains the percentage of diversity, deletions, and insertions of each TE copy in comparison to the reference sequence found in the non-redundant TE library. The percentage of diversity will be used for estimating the age of insertion of TEs.
+
+### TEsorter - classify TEs based on protein homology
+1. $.liban.rexdb-plant.dom.faa: annotated protein sequences, which can be used for TE dating and phylogenetic analysis.
+2. $.liban.rexdb-plant.cls.tsv: TE classification.

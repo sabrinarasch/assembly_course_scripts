@@ -82,3 +82,60 @@ The goal of week 4 was to compare the assemblies from canu and flye to the *Arab
 * Output: 04_comparison
     * 4.1: nucmer
     * 4.2: mummer
+
+### Week 5 - Annotation of Transposable Elements
+The goal of week 5 was to annotate transposable elements (TE) and classify them according to their mechanism.
+
+Decided to take the polished flye and trinity assembly of Monsur.
+
+* Scripts: 05_01_EDTA_annotation.sh, 05_02_TE_sorter.sh, 05_03_TE_visualisation.R
+* Software: EDTA 1.9.6, TEsorter 1.3.0, SeqKit 0.13.2, R ???
+* Input:
+    * 5.1: polished assembly flye, (TAIR10_cds_20110103_representative_gene_model_updated)
+    * 5.2: polished.fasta.mod.EDTA.TElib.fa (output of EDTA), Brassicaceae_repbase_all_march2019.fasta
+    * 5.3: polished.fasta.mod.EDTA.TEanno.gff3 (output of EDTA)
+* Output: 05_TE_annotation
+    * 5.1: TE_annotator
+    * 5.2: TE_sorter
+    * 5.3: TEs_by_Clades_and_Range_contig_10_pilon.pdf
+
+* Container
+    * 5.1:
+        * singularity
+        * /data/courses/assembly-annotation-course/containers2/EDTA_v1.9.6.sif
+    * 5.2:
+        * singularity
+        * /data/courses/assembly-annotation-course/containers2/TEsorter_1.3.0.sif
+
+### Week 6 - Dynamics of Transposable elements
+The goal of week 6 was to estimate the age of insertion and analyse the phylogenetic relations.
+
+* Scripts: 06_01_TE_dating.sh, 06_02_TE_dating_plot_div.R
+* Software: R ???, SeqKit 0.13.2, clustal-omega 1.2.4, FastTree 2.1.10
+* Input:
+    * 6.1: polished.fasta.mod.out (output of EDTA)
+    * 6.2: polished.fasta.sed.tab (output of 6.1)
+    * 6.3: *dom.faa (output of 5.2) of both families
+* Output: 06_TE_dynamics
+    * 6.1: TE_dating
+    * 6.2: TE-myr_lines.pdf, TE-myr.pdf
+    * 6.3: TE_phylogeny
+
+* Container
+    * 6.1:
+        * conda create -n assembly_course_environment
+        * conda install -c bioconda perl-bioperl
+
+### Week 7 - Annotation of protein-coding sequences
+The goal of week 7 was to annotate the genome and create a genome database.
+
+* Scripts: 07_01_TE_annotation.sh
+* Software: maker 2.31.9
+* Input:
+    * 7.1: polished flye assembly and trinity assembly
+* Output: 07_TE_annotation
+
+* Container
+    * 7.1:
+        * singularity
+        * /data/courses/assembly-annotation-course/containers2/MAKER_3.01.03.sif
