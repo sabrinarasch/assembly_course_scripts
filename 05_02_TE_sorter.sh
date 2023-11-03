@@ -19,7 +19,7 @@
 module add UHTS/Analysis/SeqKit/0.13.2
 
 #Define other dictionaries and variables that are used
-    COURSEDIR=/data/courses/assembly-annotation-course
+    COURSE_DIR=/data/courses/assembly-annotation-course
 
     family_name=Gypsy
     # family_name=Copia
@@ -37,27 +37,33 @@ module add UHTS/Analysis/SeqKit/0.13.2
     # mkdir ${brass_dir}
     mkdir ${family_sorter_dir}
 
-#Copy reference to own directory
-    # cp /data/courses/assembly-annotation-course/CDS_annotation/Brassicaceae_repbase_all_march2019.fasta ${brass_dir}
-
 #Create the input file for the TEsorter
     cat ${TE_annotator_dir}/polished.fasta.mod.EDTA.TElib.fa | seqkit grep -r -p "Gypsy" > ${family_sorter_dir}/Gypsy.fa
     # cat ${TE_annotator_dir}/polished.fasta.mod.EDTA.TElib.fa | seqkit grep -r -p "Copia" > ${family_sorter_dir}/Copia.fa
-    # cat ${brass_dir}/Brassicaceae_repbase_all_march2019.fasta | seqkit grep -r -p "Gypsy" > ${family_sorter_dir}/Gypsy.fa
-    # cat ${brass_dir}/Brassicaceae_repbase_all_march2019.fasta | seqkit grep -r -p "Copia" > ${family_sorter_dir}/Copia.fa
+    # cat ${course_dir}/CDS_annotation/Brassicaceae_repbase_all_march2019.fasta | seqkit grep -r -p "Gypsy" > ${family_sorter_dir}/Gypsy.fa
+    # cat ${course_dir}/CDS_annotation/Brassicaceae_repbase_all_march2019.fasta | seqkit grep -r -p "Copia" > ${family_sorter_dir}/Copia.fa
+        #Options entered here are:
+            #"grep":
+            #"-r":
+            #"-p":
 
 #Define family file
     family_file=${family_sorter_dir}/Gypsy.fa
-    # family_file=${family_sorter_dir}/Copia.fa
-    # family_file=${family_sorter_dir}/Gypsy.fa
     # family_file=${family_sorter_dir}/Copia.fa
 
 #Go to folder where results should be stored.
     cd ${family_sorter_dir}
 
-#Run  to ; do not indent
+#Run  to TE sorter to classify TE to mechanism; do not indent
 singularity exec \
---bind ${COURSEDIR} \
+--bind ${COURSE_DIR} \
 --bind ${family_sorter_dir} \
-${COURSEDIR}/containers2/TEsorter_1.3.0.sif \
+${COURSE_DIR}/containers2/TEsorter_1.3.0.sif \
 TEsorter ${family_file} -db rexdb-plant -pre ${family_name}
+    #Options entered here are:
+        #"singularity exec":
+        #"--bind ${COURSE_DIR}:":
+        #"--bind ${family_sorter_dir}":
+        #"${COURSE_DIR}/containers2/TEsorter_1.3.0.sif":
+        #"-db rexdb-plant":
+        #"-pre":

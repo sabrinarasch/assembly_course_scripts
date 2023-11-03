@@ -19,35 +19,36 @@
     mkdir ${annotation_dir}
     mkdir ${TE_annotator_dir}
 
-#Define other dictionaries that are used
-    input_dir=/data/users/mfaye/assembly_course/data/assemblies/flye_out/
-    COURSEDIR=/data/courses/assembly-annotation-course
+#Copy data files from Monsur to RawData and make soft link course folder
+    cp /data/users/mfaye/assembly_course/data/assemblies/flye_out/polished.fasta ${raw_data_dir}
+    ln -s /data/courses/assembly-annotation-course/CDS_annotation ${course_dir}
 
 #Go to folder where results should be stored.
     cd ${TE_annotator_dir}
 
-#Run EDTA to ; do not indent
+#Run EDTA for automated annotation; do not indent
 singularity exec \
---bind ${COURSEDIR} \
+--bind ${course_dir} \
 --bind ${TE_annotator_dir} \
---bind ${input_dir} \
-${COURSEDIR}/containers2/EDTA_v1.9.6.sif \
+--bind ${raw_data_dir} \
+${course_dir}/containers2/EDTA_v1.9.6.sif \
 EDTA.pl \
---genome ${input_dir}/polished.fasta \
+--genome ${raw_data_dir}/polished.fasta \
 --species others \
 --step all \
---cds ${COURSEDIR}/CDS_annotation/TAIR10_cds_20110103_representative_gene_model_updated \
+--cds ${course_dir}/CDS_annotation/TAIR10_cds_20110103_representative_gene_model_updated \
 --anno 1 \
 --threads 50
-    #"singularity exec":
-    #"--bind ${COURSEDIR}":
-    #"--bind ${TE_annotator_dir}":
-    #"--bind ${input_dir}":
-    #"${COURSEDIR}/containers2/EDTA_v1.9.6.sif":
-    #"EDTA.pl":
-    #"--genome ${input_dir}/polished.fasta":
-    #"--species others":
-    #"--step all":
-    #"--cds ${COURSEDIR}/CDS_annotation/TAIR10_cds_20110103_representative_gene_model_updated":
-    #"--anno 1":
-    #"--threads 5":
+    #Options entered here are:
+        #"singularity exec":
+        #"--bind ${course_dir}":
+        #"--bind ${TE_annotator_dir}":
+        #"--bind ${raw_data_dir}":
+        #"${course_dir}/containers2/EDTA_v1.9.6.sif":
+        #"EDTA.pl":
+        #"--genome ${raw_data_dir}/polished.fasta":
+        #"--species others":
+        #"--step all":
+        #"--cds ${course_dir}/CDS_annotation/TAIR10_cds_20110103_representative_gene_model_updated":
+        #"--anno 1":
+        #"--threads 50":
