@@ -44,13 +44,11 @@
 # ${COURSE_DIR}/containers2/MAKER_3.01.03.sif \
 # maker -CTL
     #Options entered here are:
-        #"singularity exec":
-        #"--bind $SCRATCH":
-        #"# --bind ${COURSE_DIR}":
-        #"--bind ${course_dir}":
-        #"--bind ${software_dir}":
-        #"${COURSE_DIR}/containers2/MAKER_3.01.03.sif":
-        #"maker -CTL":
+        #"singularity exec": execute container with given options
+        #"--bind": a user-bind path specification.
+        #"${COURSE_DIR}/containers2/MAKER_3.01.03.sif": Singularity Image Format container to be executed
+        #"maker": command to be executed
+        #"-CTL": Generate empty control files in the current directory.
 
 #Run MAKER with MPI
 mpiexec -n 16 singularity exec \
@@ -61,10 +59,7 @@ mpiexec -n 16 singularity exec \
 ${COURSE_DIR}/containers2/MAKER_3.01.03.sif \
 maker -mpi maker_opts.ctl maker_bopts.ctl maker_exe.ctl
     #Options entered here are:
-        #"singularity exec":
-        #"--bind $SCRATCH":
-        #"# --bind ${COURSE_DIR}":
-        #"--bind ${course_dir}":
-        #"--bind ${software_dir}":
-        #"${COURSE_DIR}/containers2/MAKER_3.01.03.sif":
-        #"maker -mpi maker_opts.ctl maker_bopts.ctl maker_exe.ctl":
+        #"mpiexec -n 16 singularity exec": execute container with given options
+        #"--bind": a user-bind path specification.
+        #"${COURSE_DIR}/containers2/MAKER_3.01.03.sif": Singularity Image Format container to be executed
+        #"maker -mpi maker_opts.ctl maker_bopts.ctl maker_exe.ctl": command to be executed
