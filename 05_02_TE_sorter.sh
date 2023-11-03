@@ -43,9 +43,9 @@ module add UHTS/Analysis/SeqKit/0.13.2
     # cat ${course_dir}/CDS_annotation/Brassicaceae_repbase_all_march2019.fasta | seqkit grep -r -p "Gypsy" > ${family_sorter_dir}/Gypsy.fa
     # cat ${course_dir}/CDS_annotation/Brassicaceae_repbase_all_march2019.fasta | seqkit grep -r -p "Copia" > ${family_sorter_dir}/Copia.fa
         #Options entered here are:
-            #"grep":
-            #"-r":
-            #"-p":
+            #"grep": search sequences by ID/name/sequence/sequence motifs, mismatch allowed
+            #"-r": patterns are regular expression
+            #"-p": search pattern
 
 #Define family file
     family_file=${family_sorter_dir}/Gypsy.fa
@@ -61,9 +61,9 @@ singularity exec \
 ${COURSE_DIR}/containers2/TEsorter_1.3.0.sif \
 TEsorter ${family_file} -db rexdb-plant -pre ${family_name}
     #Options entered here are:
-        #"singularity exec":
-        #"--bind ${COURSE_DIR}:":
-        #"--bind ${family_sorter_dir}":
-        #"${COURSE_DIR}/containers2/TEsorter_1.3.0.sif":
-        #"-db rexdb-plant":
-        #"-pre":
+        #"singularity exec": execute container with given options
+        #"--bind": a user-bind path specification.
+        #"${COURSE_DIR}/containers2/TEsorter_1.3.0.sif": Singularity Image Format container to be executed
+        #"TEsorter": command to be executed
+        #"-db rexdb-plant": the database name used
+        #"-pre": prefix
