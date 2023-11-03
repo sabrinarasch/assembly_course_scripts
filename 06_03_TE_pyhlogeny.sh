@@ -47,9 +47,9 @@
     sed -i 's/ .\+//' ${family_name}_list.txt #remove all characters following "empty space"
     seqkit grep -f ${family_name}_list.txt ${input_file} -o ${family_name}_RT.fasta
         #Options entered here are:
-            #"grep":
-            #"-f":
-            #"-o":
+            #"grep": search sequences by ID/name/sequence/sequence motifs, mismatch allowed
+            #"-f": pattern file
+            #"-o": out file
 
 #Shorten the identifiers of RT sequences.
     sed -i 's/|.\+//' ${family_name}_RT.fasta #remove all characters following "|"
@@ -57,10 +57,8 @@
 #Align the sequences
     clustalo -i ${family_name}_RT.fasta -o ${family_name}_protein_alignment.fasta
         #Options entered here are:
-            #"-i":
-            #"-o":
+            #"-i": Multiple sequence input file
+            #"-o": Multiple sequence alignment output file
 
 #Create a phylogenetic tree with FastTree
     FastTree -out ${family_name}_protein_alignment.tree ${family_name}_protein_alignment.fasta
-        #Options entered here are:
-            #"-out":
