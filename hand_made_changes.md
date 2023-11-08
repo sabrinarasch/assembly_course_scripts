@@ -13,7 +13,7 @@ Extract information from __polished.fasta.mod.EDTA.TEanno.sum__ from EDTA. Same 
 #TE_family,family_size<br>
 TE_00000298_INT#LTR/Copia,0
 
-## 07_01_TE_annotation
+## 07_01_prot_annotation
 genome=/data/users/srasch/assembly_course/RawData/polished.fasta #genome sequence (fasta file or fasta embeded in GFF3 file)
 
 est=/data/users/srasch/assembly_course/RawData/assembly.fasta #set of ESTs or assembled mRNA-seq in fasta format
