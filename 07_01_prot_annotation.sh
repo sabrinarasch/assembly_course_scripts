@@ -2,11 +2,11 @@
 
 #SBATCH --mem-per-cpu=12G
 #SBATCH --time=20:00:00
-#SBATCH --job-name=TE_annotation
+#SBATCH --job-name=prot_annotation
 #SBATCH --mail-user=sabrina.rasch@students.unibe.ch
 #SBATCH --mail-type=begin,end
-#SBATCH --output=/data/users/srasch/assembly_course/Output/output_TE_annotation_%j.o
-#SBATCH --error=/data/users/srasch/assembly_course/Error/error_TE_annotation_%j.e
+#SBATCH --output=/data/users/srasch/assembly_course/Output/output_prot_annotation_%j.o
+#SBATCH --error=/data/users/srasch/assembly_course/Error/error_prot_annotation_%j.e
 #SBATCH --partition=pall
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=16
@@ -22,18 +22,17 @@
     COURSE_DIR=/data/courses/assembly-annotation-course
     software_dir=/software
 
-
 #Specify directory structure and create them
     course_dir=/data/users/srasch/assembly_course
-        TE_annotation_dir=${course_dir}/07_TE_annotation
+        prot_annotation_dir=${course_dir}/07_prot_annotation
     
-    mkdir ${TE_annotation_dir}
+    mkdir ${prot_annotation_dir}
 
 #Go to folder where results should be stored.
-    cd ${TE_annotation_dir}
+    cd ${prot_annotation_dir}
 
 #Copy data files from Monsur to RawData and make soft link course folder
-    cp /data/users/mfaye/assembly_course/data/assemblies/trinity_out/assembly.fasta ${course_dir}/RawData
+    # cp /data/users/mfaye/assembly_course/data/assemblies/trinity_out/assembly.fasta ${course_dir}/RawData
 
 #Create control files
 # singularity exec \
