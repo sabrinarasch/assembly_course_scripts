@@ -16,23 +16,37 @@
     module add SequenceAnalysis/GenePrediction/maker/2.31.9
 
 #Define other dictionaries and variables that are used
-    export TMPDIR=$SCRATCH
     genome="polished"
 
 #Specify directory structure and create them
     course_dir=/data/users/srasch/assembly_course
-        prot_annotation_dir=${course_dir}/07_TE_annotation
-        # prot_annotation_dir=${course_dir}/07_prot_annotation
+        prot_annotation_dir=${course_dir}/07_prot_annotation
+            renamed_dir=${prot_annotation_dir}/${genome}.maker.output.renamed
     
-    # mkdir ${prot_annotation_dir}
+    mkdir ${renamed_dir}
+
+#Specify input file
+    index_log_input=${prot_annotation_dir}/polished.maker.output/${genome}_master_datastore_index.log
 
 #Go to folder where results should be stored.
-    cd ${prot_annotation_dir}/${genome}.maker.output
+    cd ${renamed_dir}
 
 #Generate gff and fasta files
-    gff3_merge -d ${genome}_master_datastore_index.log -o ${genome}.all.maker.gff
-    gff3_merge -d ${genome}_master_datastore_index.log -n -o ${genome}.all.maker.noseq.gff
-    fasta_merge -d ${genome}_master_datastore_index.log -o ${genome}
+    gff3_merge -d ${index_log_input} -o ${genome}.all.maker.gff
+        #Options entered here are:
+            #"-d": The location of the MAKER datastore index log file.
+            #"-o": Alternate base name for the output files.
+
+    gff3_merge -d ${index_log_input} -n -o ${genome}.all.maker.noseq.gff
+        #Options entered here are:
+            #"-d": The location of the MAKER datastore index log file.
+            #"-n": Do not print fasta sequence in footer
+            #"-o": Alternate base name for the output files.
+
+    fasta_merge -d ${index_log_input} -o ${genome}
+        #Options entered here are:
+            #"-d": The location of the MAKER datastore index log file.
+            #"-o": Alternate base name for the output files.
 
 #Finalize the annotation
     protein=${genome}.all.maker.proteins.fasta
@@ -45,6 +59,10 @@
     cp ${transcript} ${transcript}.renamed.fasta
 
     maker_map_ids --prefix ${prefix} --justify 7 ${gff}.renamed.gff > ${genome}.id.map
+        #Options entered here are:
+            #"--prefix": The prefix to use for all IDs (default = 'MAKER_')
+            #"--justify": The unique integer portion of the ID will be right justified with '0's to this length (default = 8)
+
     map_gff_ids ${genome}.id.map ${gff}.renamed.gff
     map_fasta_ids ${genome}.id.map ${protein}.renamed.fasta
     map_fasta_ids ${genome}.id.map ${transcript}.renamed.fasta
