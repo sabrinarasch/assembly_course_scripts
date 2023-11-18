@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-#SBATCH --cpus-per-task=10
-#SBATCH --mem=10G
-#SBATCH --time=20:00:00
+#SBATCH --cpus-per-task=12
+#SBATCH --mem=48G
+#SBATCH --time=06:00:00
 #SBATCH --job-name=BUSCO_evaluation
 #SBATCH --mail-user=sabrina.rasch@students.unibe.ch
 #SBATCH --mail-type=begin,end
@@ -10,13 +10,10 @@
 #SBATCH --error=/data/users/srasch/assembly_course/Error/error_BUSCO_evaluation_%j.e
 #SBATCH --partition=pall
 
-### Run this script X times.
+### Run this script 1 time.
 
 #Add the modules
     module add UHTS/Analysis/busco/4.1.4
-
-#Define other dictionaries and variables that are used
-    input_dir=/data/users/srasch/assembly_course/07_TE_annotation/polished.maker.output/
 
 #Specify directory structure and create them
     course_dir=/data/users/srasch/assembly_course
@@ -27,6 +24,7 @@
     mkdir ${BUSCO_dir}
 
 #Specify the assembly to use
+    input_dir=${course_dir}/07_prot_annotation/polished.maker.output.renamed/
     assembly=${input_dir}/polished.all.maker.proteins.fasta.renamed.fasta
 
 #Go to folder where the evaluation results will be stored
