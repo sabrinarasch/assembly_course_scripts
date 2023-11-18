@@ -10,7 +10,7 @@
 #SBATCH --error=/data/users/srasch/assembly_course/Error/error_bed_fasta_formatting_%j.e
 #SBATCH --partition=pall
 
-### Run this script X times.
+### Run this script 1 time.
 
 #Add the modules
     module add UHTS/Analysis/SeqKit/0.13.2

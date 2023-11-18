@@ -10,7 +10,7 @@
 #SBATCH --error=/data/users/srasch/assembly_course/Error/error_UniProt_evaluation_%j.e
 #SBATCH --partition=pall
 
-### Run this script 1 times.
+### Run this script 1 time.
 
 #Add the modules
     module add Blast/ncbi-blast/2.10.1+
