@@ -50,5 +50,6 @@ EDTA.pl \
         #"--species others": Specify the species for identification of TIR candidates.
         #"--step all": Specify which steps you want to run EDTA. all: run the entire pipeline
         #"--cds": Provide a FASTA file containing the coding sequence (no introns, UTRs, nor TEs) of this genome or its close relative.
+        #NEWPATH FOR CDS: ${course_dir}/CDS_annotation/MAKER/TAIR10_pep_20110103_representative_gene_model
         #"--anno 1": Perform (1) or not perform (0, default) whole-genome TE annotation after TE library construction.
         #"--threads 50": Number of theads to run this script

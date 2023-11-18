@@ -46,6 +46,7 @@ module add UHTS/Analysis/SeqKit/0.13.2
             #"grep": search sequences by ID/name/sequence/sequence motifs, mismatch allowed
             #"-r": patterns are regular expression
             #"-p": search pattern
+            #NEWPATH FOR Brassicacea: /data/courses/assembly-annotation-course/Brassicaceae_repbase_all_march2019.fasta
 
 #Define family file
     family_file=${family_sorter_dir}/Gypsy.fa
