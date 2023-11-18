@@ -10,7 +10,7 @@
 #SBATCH --error=/data/users/srasch/assembly_course/Error/error_gff_fasta_annotation_%j.e
 #SBATCH --partition=pall
 
-### Run this script X times.
+### Run this script 1 time.
 
 #Add the modules
     module add SequenceAnalysis/GenePrediction/maker/2.31.9
