@@ -1,14 +1,18 @@
-#Run locally
-setwd("C:/Users/sabri/OneDrive/Desktop/HS23/Genome and Transcriptome Assembly_Organization and annotation of Eukaryote genomes/Exercises")
-#Install packages, only run when the packages are not installed yet
-  #if (!require("BiocManager", quietly = TRUE)){
-  #  install.packages("BiocManager")
-  #}
-    #BiocManager::install("rtracklayer")
-  
-  #if (!require("RColorBrewer", quietly = TRUE)){
-  #  install.packages("RColorBrewer")
-  #}
+###################
+### Run locally ###
+###################
+
+#Set working directory
+  setwd("C:/Users/sabri/OneDrive/Desktop/HS23/Genome and Transcriptome Assembly_Organization and annotation of Eukaryote genomes/Exercises")
+  #Install packages, only run when the packages are not installed yet
+    #if (!require("BiocManager", quietly = TRUE)){
+    #  install.packages("BiocManager")
+    #}
+      #BiocManager::install("rtracklayer")
+    
+    #if (!require("RColorBrewer", quietly = TRUE)){
+    #  install.packages("RColorBrewer")
+    #}
 
 #Load the packages
   library(rtracklayer)
@@ -16,8 +20,7 @@ setwd("C:/Users/sabri/OneDrive/Desktop/HS23/Genome and Transcriptome Assembly_Or
 
 #Create funciton to round milions
   round_millions <- function(num){
-    return(ceiling(num/1e+06)*1e+06)
-  }
+    return(ceiling(num/1e+06)*1e+06)}
 
 #Define path to merged assembly GFF3
   gff_path <- '05_TE_annotation/polished.fasta.mod.EDTA.TEanno.gff3'
