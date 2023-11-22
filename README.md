@@ -127,12 +127,44 @@ The goal of week 6 was to estimate the age of insertion and analyse the phylogen
 ### Week 7 - Annotation of protein-coding sequences
 The goal of week 7 was to annotate the genome and create a genome database.
 
-* Scripts: 07_01_TE_annotation.sh
+* Scripts: 07_01_prot_annotation.sh, 07_02_gff_fasta_annotation.sh
 * Software: maker 2.31.9
 * Input:
     * 7.1: polished flye assembly and trinity assembly
-* Output: 07_TE_annotation
+    * 7.2: polished_master_datastore_index.log (output of maker)
+* Output: 07_prot_annotation
+    * 7.1: polished.maker.output
+    * 7.2: polished.maker.output.renamed
 * Container
     * 7.1:
         * singularity
         * /data/courses/assembly-annotation-course/containers2/MAKER_3.01.03.sif
+
+### Week 8 - Assess annotation quality.
+The goal of week 8 was to assess the annotation quality.
+
+* Scripts: 08_01_BUSCO_evaluation.sh, 08_02_UniProt_evaluation.sh
+* Software: busco 4.1.4, ncbi-blast 2.10.1+
+* Input:
+    * 8.1 & 8.2: polished.all.maker.proteins.fasta.renamed.fasta (output of maker then processed with script 07_02_gff_fasta_annotation.sh)
+* Output: 08_Quality
+    * 8.1: BUSCO
+    * 8.2: UniProt
+
+### Week 9 - Comparative genomics
+The goal of week 9 was ???
+
+* Scripts: 09_01_bed_fasta_formatting.sh, 09_02_genespace.sh, 09_03_Parse_Orthofinder.R
+* Software: SeqKit 0.13.2, R ???
+* Input:
+    * 9.1: polished.all.maker.noseq.gff.renamed.gff, polished.all.maker.proteins.fasta.renamed.fasta
+    * 9.2: ???
+    * 9.3: ???
+* Output: 09_comp_genomics
+    * 9.1: bed, peptide, noseq, proteins
+    * 9.2: genespace
+    * 9.3: ???
+* Container
+    * 9.2:
+        * apptainer
+        * /data/users/srasch/assembly_course/scripts/genespace_1.1.4.sif (from Giliane Rochat)
