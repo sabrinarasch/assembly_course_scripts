@@ -26,7 +26,7 @@ Path to data sets on the IBU cluster: **/data/courses/assembly-annotation-course
 ## Roadmap
 
 ### Week 1 - reads & QC
-The goal of week 1 was to run a QC on the datasets and perform k-mer counting. For the k-mer counting a additional script was used *best_k.sh*, with the genomsize as 150'000'000, which resulted in an optimal k of 19.
+The goal of week 1 was to run a QC on the datasets and perform k-mer counting. For the k-mer counting an additional script was used *best_k.sh*, with the genomsize as 150'000'000, which resulted in an optimal k of 19.
 
 * Scripts: 01_01_fastqc_QC.sh, 01_02_jellyfish_kmer.sh
 * Software: fastqc 0.11.9, jellyfish 2.3.0
@@ -84,12 +84,12 @@ The goal of week 4 was to compare the assemblies from canu and flye to the *Arab
     * 4.2: mummer
 
 ### Week 5 - Annotation of Transposable Elements
-The goal of week 5 was to annotate transposable elements (TE) and classify them according to their mechanism.
+The goal of week 5 was to first produce a filtered non-redundant TE library for the annoation of structurally intact and fragmented elements. Then the TEs were classified according to their transposition mechanism. Class I: through an RNA intermediate ("copy/paste"). Class II: as a DNA moleculte ("cut/paste"). And further subdivision into subclasses, orderes, superfamilies, clades, and families was done.
 
-Decided to take the polished flye and trinity assembly of Monsur.
+The group decided to take the polished flye and trinity assembly of Monsur.
 
 * Scripts: 05_01_EDTA_annotation.sh, 05_02_TE_sorter.sh, 05_03_TE_visualisation.R
-* Software: EDTA 1.9.6, TEsorter 1.3.0, SeqKit 0.13.2, R ???
+* Software: EDTA 1.9.6, TEsorter 1.3.0, SeqKit 0.13.2, R 4.3.0
 * Input:
     * 5.1: polished assembly flye, (TAIR10_cds_20110103_representative_gene_model_updated)
     * 5.2: polished.fasta.mod.EDTA.TElib.fa (output of EDTA), Brassicaceae_repbase_all_march2019.fasta
@@ -107,10 +107,10 @@ Decided to take the polished flye and trinity assembly of Monsur.
         * /data/courses/assembly-annotation-course/containers2/TEsorter_1.3.0.sif
 
 ### Week 6 - Dynamics of Transposable elements
-The goal of week 6 was to estimate the age of insertion and analyse the phylogenetic relations.
+The goal of week 6 was to estimate the age of TEs (time of insertion), which can be estimated by calculating the divergence to a consensus sequence. The assumption behind this is, that copies of the same family derive from one common active element and therefore they need to be identical at the time of insertion and then accumulate mutations over time. Further phylogenetic relations between TEs was analysed. This allows to defined groups of closely related TEs that come from a common ancestral TE sequence. Most such studies analyse well characterised protein coding sequences, such as the reverse transcriptase, ribonuclease H and integrase for LTR retrotransposons, and transposase for DNA transposons. This analysis is done on the retrotransposon superfamilies copia and gypsy.
 
 * Scripts: 06_01_TE_dating.sh, 06_02_TE_dating_plot_div.R
-* Software: R ???, SeqKit 0.13.2, clustal-omega 1.2.4, FastTree 2.1.10
+* Software: R 4.3.0, SeqKit 0.13.2, clustal-omega 1.2.4, FastTree 2.1.10
 * Input:
     * 6.1: polished.fasta.mod.out (output of EDTA)
     * 6.2: polished.fasta.sed.tab (output of 6.1)
@@ -125,7 +125,7 @@ The goal of week 6 was to estimate the age of insertion and analyse the phylogen
         * conda install -c bioconda perl-bioperl
 
 ### Week 7 - Annotation of protein-coding sequences
-The goal of week 7 was to annotate the genome and create a genome database.
+The goal of week 7 was to annotate the genome and create a genome database. The MAKER pipeline was used for this task. It automatically compiles 1. *ab initio* prediction models, 2. evidence of expression and 3. sequence homolgy to known proteins, into gene annotations.
 
 * Scripts: 07_01_prot_annotation.sh, 07_02_gff_fasta_annotation.sh
 * Software: maker 2.31.9
@@ -140,8 +140,8 @@ The goal of week 7 was to annotate the genome and create a genome database.
         * singularity
         * /data/courses/assembly-annotation-course/containers2/MAKER_3.01.03.sif
 
-### Week 8 - Assess annotation quality.
-The goal of week 8 was to assess the annotation quality.
+### Week 8 - Assess annotation quality
+The goal of week 8 was to assess the annotation quality. The completeness of the annotation was analysed using BUSCO. Further the sequence homology to functionally validated proteins was analysed. This was done using the UniProt database.
 
 * Scripts: 08_01_BUSCO_evaluation.sh, 08_02_UniProt_evaluation.sh
 * Software: busco 4.1.4, ncbi-blast 2.10.1+
@@ -152,18 +152,18 @@ The goal of week 8 was to assess the annotation quality.
     * 8.2: UniProt
 
 ### Week 9 - Comparative genomics
-The goal of week 9 was ???
+The goal of week 9 was to study the sequence homology to proteins of closely related species with comparative genomics. A group of genes that descend from a single gene in the last common ancestor of different species is called an orthogroup. Visualising the percentages of genes in orthogroups helps with quality control. Normally, a high percentage of such genes is expected, but if a distant species is present in the proteomic data used, this is not the case.
 
 * Scripts: 09_01_bed_fasta_formatting.sh, 09_02_genespace.sh, 09_03_Parse_Orthofinder.R
-* Software: SeqKit 0.13.2, R ???
+* Software: SeqKit 0.13.2, R 4.3.0
 * Input:
-    * 9.1: polished.all.maker.noseq.gff.renamed.gff, polished.all.maker.proteins.fasta.renamed.fasta
-    * 9.2: ???
-    * 9.3: ???
+    * 9.1: *.all.maker.noseq.gff.renamed.gff, *.all.maker.proteins.fasta.renamed.fasta
+    * 9.2: bed, peptide, noseq, proteins
+    * 9.3: Statistics_PerSpecies.tsv
 * Output: 09_comp_genomics
-    * 9.1: bed, peptide, noseq, proteins
+    * 9.1: bed, peptide
     * 9.2: genespace
-    * 9.3: ???
+    * 9.3: Orthofinder
 * Container
     * 9.2:
         * apptainer

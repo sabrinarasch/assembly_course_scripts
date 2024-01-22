@@ -1,8 +1,8 @@
 # Questions
 These questions are copied from the [course website](https://docs.pages.bioinformatics.unibe.ch/assembly-annotation-course/).
 
-## Week 1
-### Basic read statistics
+# Week 1 - reads & QC
+## Basic read statistics
 * What are the read lengths of the different datasets?
     * *Illumina: 101; pacbio: 50-45262/50-44540; RNAseq: 101*
 * What kind of coverage do you expect from the Pacbio and the Illumina WGS reads? (**hint**: lookup the expected genome size of *Arabidopsis thaliana*)
@@ -17,7 +17,7 @@ These questions are copied from the [course website](https://docs.pages.bioinfor
 * Do all datasets have information on base quality?
     * *No the pacbio data set does not have information about the base quality.*
 
-### Perform k-mer counting
+## k-mer counting
 * Is the estimated genome size and percentage of heterozygousity expected?
     * *Illumina: 124'986'561; 0.0591%* from [here](http://genomescope.org/analysis.php?code=F7VqKGM3BOJPqlSiQkQL)
     * *Pacbio: 14'389'033; 3.9%* from [here](http://genomescope.org/analysis.php?code=XoFDoQ69GSXg6cpT1mOG)
@@ -26,9 +26,11 @@ These questions are copied from the [course website](https://docs.pages.bioinfor
 * Bonus: Why are we using canonical k-mers? (use Google)
     * *When counting k-mers in sequencing reads, there is really no way to differentiate between k-mers and their reverse complement. What I mean by this is that seeing e.g. ACGGT is equivalent to seeing ACCGT, since the latter is the reverse complement of the former and the sequenced reads don't originate from a prescribed strand of the DNA. The -C command in jellyfish considers both a k-mer and its reverse complement as equivalent, and associates the count for both (the sum of the count of a kmer and its reverse complement) with the k-mer among the two that is lexicographically smaller. So, for example, above only ACCGT would be stored and its count would be equal to the number of occurrences of both ACCGT and ACGGT. If you don't include -C in your jellyfish options, these k-mers will be treated separately. There's nothing "wrong" with this, per-se, but it may not be what you want.* from [biostars](https://www.biostars.org/p/153170/)
 
-## Week 3
-### Results
-#### BUSCO
+# Week 2 - assembly
+
+# Week 3 - assembly polishing and evaluation
+## Results
+### BUSCO
 
 |                            Assembly | flye (p) | flye (r) | canu (p) | canu (r) | trinity (r) |
 |-------------------------------------|----------|----------|----------|----------|-------------|
@@ -46,7 +48,7 @@ These questions are copied from the [course website](https://docs.pages.bioinfor
 * *trinity (r): C: 65.0% [S:20.1%, D:44.9%], F:7.6%, M:27.4%, n:4596*
 * From the files short_summary.specific.brassicales_odb10.[assembly].txt
 
-#### QUAST
+### QUAST
 
 |                   Assembly | flye (p, w/o) | flye (r, w/o) | canu (p, w/o) | canu (r, w/o) |
 |----------------------------|---------------|---------------|---------------|---------------|
@@ -131,7 +133,7 @@ These questions are copied from the [course website](https://docs.pages.bioinfor
 
 * From the files report.txt
 
-#### Merqury
+### Merqury
 
 | Assembly |    flye (p) |    flye (r) |    canu (p) |    canu (r) |
 |----------|-------------|-------------|-------------|-------------|
@@ -163,14 +165,15 @@ These questions are copied from the [course website](https://docs.pages.bioinfor
     5. Completeness (%)
         * From the [documentation](https://github.com/marbl/merqury/wiki/2.-Overall-k-mer-evaluation)
 
-### Assembly polishing
+## Assembly polishing
 * How much does the polishing improve your assemblies (run the assembly evaluations on the polished and non-polished assemblies)?
     * *With the evaluation with BUSCO it does improve a little bit. The assembly with canu improves more than the assembly with flye*
     * *With the evaluation with QUAST the polishing does not improve the assemblies a lot.*
     * *With the evaluation with merqury the piolishing does improve the quality of the assemblies. Especially when looking at the QV and error rate.*
 
-### Assembly evaluation
-#### Assessing quality with BUSCO (Complete score above 95% is good)
+## Assembly evaluation
+### Assessing quality with BUSCO
+*(Complete score above 95% is good)*
 * How do your genome assemblies look according to your BUSCO results? Is one genome assembly better than the other?
     * *They both look very similar and good*
 
@@ -178,13 +181,13 @@ These questions are copied from the [course website](https://docs.pages.bioinfor
     * *The complete score is just 65% wich is very low. There are actually more duplicated ones than single-copy; and there are a lot of missing ones.*
     * *For transcriptomes or annotated gene sets this indicates that these orthologs are indeed missing or the transcripts or gene models are so incomplete/fragmented that they could not even meet the criteria to be considered as fragmented.* from [BUSCO](https://busco.ezlab.org/busco_userguide.html#interpreting-the-results)
 
-#### Assessing quality with QUAST
+### Assessing quality with QUAST
 * How do your genome assemblies look according to your QUAST results? Is one genome assembly better than the other?
     * *I would say the flye assembly is better, since NG50 is much higher (polished: 8822047, raw: 8819554) than the one from the canu assembly (polished: 433815, raw: 433505). This also counts for the NG75 (flye: polished: 1705972, raw: 1705414; canu: polished: 211025, raw: 209127).*
 * What additional information you get if you have a reference available?
     * *We get information about missassemblies and unaligned contigs. Where the assemblies are either similar or again flye is much better.*
 
-#### Assessing quality with merqury
+### Assessing quality with merqury
 * What are the consensus quality QV and error rate values of your assemblies?
     * *QV for flye (p: 39.96, r: 34.66)*
     * *QV for canu (p: 41.53, r: 31.42)*
@@ -198,8 +201,7 @@ These questions are copied from the [course website](https://docs.pages.bioinfor
 * Does one assembly perfom better than the other?
     * *Again flye does a bit better than canu.*
 
-## Week 4
-### Comparing genomes
+# Week 4  - comparing genomes
 * What does the dotplot show and what do the different colors mean?
     * *Answer*
 * Do your genome assemblies look very different from the reference genome?
@@ -209,13 +211,13 @@ These questions are copied from the [course website](https://docs.pages.bioinfor
 * (If you assembled different accessions: Do you see any differences between the accessions?)
     * *Answer*
 
-## Week 5
-### Annotation of Transposable Elements (TEs)
+# Week 5 - Annotation of Transposable Elements
 * Report the number of base pairs and the percent of the genome occupied by each superfamily. (You can find the results in $genome.mod.EDTA.TEanno.sum)
     * *Answer*
 * Share the results and compare the clades abundance (percent of the occupied genome) between Arabidopsis accessions. (See $.liban.rexdb-plant.cls.tsv for the classification of TE families into clades and $genome.mod.EDTA.TEanno.sum for their abundance. Visualize and compare the difference between accessions with a bar plot.)
     * *Answer*
 
+## Important output files
 ### Automated annotation - The Extensive de novo TE Annotator (EDTA)
 1. A non-redundant TE library: $genome.mod.EDTA.TElib.fa. TEs are classified into the superfamily level and using the three-letter naming system reported in Wicker et al. (2007). Each sequence can be considered as a TE family.
 2. Whole-genome TE annotation: $genome.mod.EDTA.TEanno.gff3. This file contains both structurally intact and fragmented TE annotations (--anno 1 required)
@@ -223,6 +225,37 @@ These questions are copied from the [course website](https://docs.pages.bioinfor
 4. Summary of whole-genome TE annotation: $genome.mod.EDTA.TEanno.sum (--anno 1 required)
 5. Repeatmasker output: $genome.mod.EDTA.anno/$genome.mod.out. This file contains the percentage of diversity, deletions, and insertions of each TE copy in comparison to the reference sequence found in the non-redundant TE library. The percentage of diversity will be used for estimating the age of insertion of TEs.
 
-### TEsorter - classify TEs based on protein homology
+## TEsorter - classify TEs based on protein homology
 1. $.liban.rexdb-plant.dom.faa: annotated protein sequences, which can be used for TE dating and phylogenetic analysis.
 2. $.liban.rexdb-plant.cls.tsv: TE classification.
+
+# Week 6 - Dynamics of Transposable elements
+## Dating of TEs/Estimation of insertion age
+
+## Phylogenetic analysis of TEs
+
+# Week 7 - Annotation of protein-coding sequences
+## Automatic annotation with the MAKER pipeline
+* The $.datastore directory contains a set of subfolders, each containing the final MAKER output for individual contigs from the genomic fasta file.
+* The $.datastore_index.log contains information on both the run status of individual contigs and information on where individual contig data is stored
+
+# Week 8 - Assess annotation quality
+## BUSCO
+* Compare this result with
+    * the BUSCO analysis you previously run against the genome
+    * the BUSCO analyses of other Arabidopsis accessions.
+* Do you find any big differences? If yes, how can you explain them?
+
+## UniProt database
+The UniProt database (uniprot-plant_reviewed.fasta) contain sequences of functionally validated proteins with known functions. Align your proteins against it and report how many of your annotated proteins have homology to known ones. What can you conclude from this quality check?
+
+# Week 9 - Comparative genomics
+## Visualise Orthofinder summary statistics
+OrthoFinder automatically saves summary statistics in a directory named Comparative_Genomics_Statistics.
+* Use the R script Parse_Orthofinder.R to parse Statistics_per_species.txt (statistics about orthogroup sizes and proportion of genes assigned to orthogroups) in a list of summary statistics per species. Visualizing the percentage of genes in orthogroups is particularly useful for quality check, since one would usually expect a large percentage of genes in orthogroups, unless there is a very distant species in OrthoFinder’s input proteome data. What can you conclude from the results?
+* More informations can be found in the directory named Orthogroups. Use Parse_Orthofinder.R to parse Orthogroups.GeneCount.tsv and visualize the cooccurrence of Orthogroups between Arabidopsis accessions. What can you conclude from the results?
+
+## Visualising global synteny
+Visualize the syntenic dotplot between your Arabidopsis accession and the reference TAIR10.
+* How could you use it to improve the contiguity of your genome assembly?
+* Discuss the synteny map. Do you see any major structural rearrangements between accessions?
